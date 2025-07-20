@@ -18,7 +18,7 @@ Steps:
 - Clean up the temporary file.
 
 *Notes*:
-- In places where the Python Anthropic API uses string literals as values, the Ruby equivalent is normally a symbol.
+- In places where the Python code uses string literals comparisions, the Ruby equivalent is normally a symbol, e.g. for `response.stop_reason`.
 - Any local variables at the top level may need to be converted to constants.
 - Use `require "dotenv/load"` to load the environment variables.
 - Don't put any `#!/usr/bin/env ruby` at the top of the file.
