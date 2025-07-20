@@ -6,8 +6,8 @@ tools: "WebFetch(domain:cc.sj-cdn.net)",
 ## Your task
 
 Steps:
-- Read the Python Jupyter notebook at $ARGUMENTS
-- Convert it to Ruby
+- Download the Python Jupyter notebook at $ARGUMENTS to a temporary file.
+- Convert it to Ruby. Ensure ALL cells from the notebook are converted.
 - Save it as single Ruby file (prompt the user for the output path)
 - Commit this as "Initial conversion to Ruby"
 - Use `bundle exec ruby -wc` to check if the Ruby code is valid.
@@ -15,6 +15,7 @@ Steps:
 - Run `standardrb --fix` to fix any style issues.
 - Commit again if anything was fixed.
 - Try run the Ruby code
+- Clean up the temporary file.
 
 *Notes*:
 - In places where the Python Anthropic API uses string literals as values, the Ruby equivalent is normally a symbol.
