@@ -26,16 +26,19 @@ GEM
       psych (>= 4.0.0)
     reline (0.6.1)
       io-console (~> 0.5)
+    sorbet (0.5.12353)
+      sorbet-static (= 0.5.12353)
+    sorbet-static (0.5.12353-universal-darwin)
     stringio (3.1.7)
 
 PLATFORMS
   arm64-darwin-24
-  ruby
 
 DEPENDENCIES
   anthropic
   debug
   dotenv
+  sorbet
 
 BUNDLED WITH
    2.6.9
