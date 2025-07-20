@@ -9,7 +9,7 @@ MODEL = "claude-3-7-sonnet-latest"
 def add_user_message(messages, message)
   user_message = {
     role: "user",
-    content: message.is_a?(Hash) && message[:content] ? message[:content] : message
+    content: (message.is_a?(Hash) && message[:content]) ? message[:content] : message
   }
   messages << user_message
 end
@@ -17,7 +17,7 @@ end
 def add_assistant_message(messages, message)
   assistant_message = {
     role: "assistant",
-    content: message.is_a?(Hash) && message[:content] ? message[:content] : message
+    content: (message.is_a?(Hash) && message[:content]) ? message[:content] : message
   }
   messages << assistant_message
 end
@@ -61,13 +61,13 @@ def add_duration_to_datetime(datetime_str, duration: 0, unit: "days", input_form
   when "months"
     month = date.month + duration
     year = date.year + month / 12
-    month = month % 12
+    month %= 12
     if month == 0
       month = 12
       year -= 1
     end
     days_in_month = [31, (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? 29 : 28,
-                     31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1]
+      31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1]
     day = [date.day, days_in_month].min
     Time.new(year, month, day, date.hour, date.min, date.sec)
   when "years"
