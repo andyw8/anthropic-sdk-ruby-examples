@@ -12,7 +12,7 @@ Steps:
 - Commit this as "Initial conversion to Ruby"
 - Use `bundle exec ruby -wc` to check if the Ruby code is valid.
 - If there are syntax errors, stop and ask the user what to do.
-- Run `standard --fix` to fix any style issues.
+- Run `standardrb --fix` to fix any style issues.
 - Commit again if anything was fixed.
 - Try run the Ruby code
 
