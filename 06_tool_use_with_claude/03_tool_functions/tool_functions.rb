@@ -1,6 +1,6 @@
-require 'dotenv'
-require 'anthropic'
-require 'date'
+require "dotenv"
+require "anthropic"
+require "date"
 
 # Load environment variables
 Dotenv.load
@@ -11,12 +11,12 @@ MODEL = "claude-3-5-sonnet-20241022"
 
 # Helper methods
 def add_user_message(messages, text)
-  user_message = { role: :user, content: text }
+  user_message = {role: :user, content: text}
   messages << user_message
 end
 
 def add_assistant_message(messages, text)
-  assistant_message = { role: :assistant, content: text }
+  assistant_message = {role: :assistant, content: text}
   messages << assistant_message
 end
 
@@ -40,7 +40,7 @@ def add_months(date, months)
   new_date = date >> months
   # Handle month-end edge cases
   if date.day != new_date.day && new_date.day == 1
-    new_date = new_date - 1
+    new_date -= 1
   end
   new_date
 end
@@ -49,15 +49,15 @@ def add_duration_to_datetime(datetime_str, duration: 0, unit: "days", input_form
   date = DateTime.strptime(datetime_str, input_format)
 
   new_date = case unit
-             when "seconds" then date + Rational(duration, 86400)
-             when "minutes" then date + Rational(duration, 1440)
-             when "hours" then date + Rational(duration, 24)
-             when "days" then date + duration
-             when "weeks" then date + (duration * 7)
-             when "months" then add_months(date, duration)
-             when "years" then date >> (duration * 12)
-             else raise "Unsupported time unit: #{unit}"
-             end
+  when "seconds" then date + Rational(duration, 86400)
+  when "minutes" then date + Rational(duration, 1440)
+  when "hours" then date + Rational(duration, 24)
+  when "days" then date + duration
+  when "weeks" then date + (duration * 7)
+  when "months" then add_months(date, duration)
+  when "years" then date >> (duration * 12)
+  else raise "Unsupported time unit: #{unit}"
+  end
 
   new_date.strftime("%A, %B %d, %Y %I:%M:%S %p")
 end
@@ -123,9 +123,9 @@ if __FILE__ == $0
   # Test the functionality
   messages = []
   add_user_message(messages, "Set a reminder for tomorrow to call my dentist")
-  
+
   system_prompt = "You are a helpful assistant that can manage dates and set reminders. Use the provided tools when appropriate."
-  
+
   response = chat(messages, system: system_prompt)
   puts "Assistant response: #{response}"
 end
