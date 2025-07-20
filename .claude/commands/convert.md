@@ -19,5 +19,5 @@ Steps:
 *Notes*:
 - In places where the Python Anthropic API uses string literals as values, the Ruby equivalent is normally a symbol.
 - Any local variables at the top level may need to be converted to constants.
-- Use dotenv to load the environment variables.
+- Use `require "dotenv/load"` to load the environment variables.
 - Don't put any `#!/usr/bin/env ruby` at the top of the file.
