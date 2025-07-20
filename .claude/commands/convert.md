@@ -16,6 +16,7 @@ Steps:
 - Commit again if anything was fixed.
 - Try run the Ruby code
 - Clean up the temporary file.
+- Update the README.md to link to the newly added Ruby file.
 
 *Notes*:
 - In places where the Python code uses string literals comparisions, the Ruby equivalent is normally a symbol, e.g. for `response.stop_reason`.
