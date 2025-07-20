@@ -34,8 +34,7 @@ def chat(messages, system: nil, temperature: 1.0, stop_sequences: [], tools: nil
   params[:tools] = tools if tools
   params[:system] = system if system
 
-  message = CLIENT.messages(params)
-  message
+  CLIENT.messages(params)
 end
 
 def text_from_message(message)
@@ -155,7 +154,7 @@ BATCH_TOOL_SCHEMA = {
 
 def get_current_datetime(date_format: "%Y-%m-%d %H:%M:%S")
   raise ArgumentError, "date_format cannot be empty" if date_format.nil? || date_format.empty?
-  
+
   DateTime.now.strftime(date_format)
 end
 
