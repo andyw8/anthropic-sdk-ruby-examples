@@ -22,3 +22,4 @@ Steps:
 - Any local variables at the top level may need to be converted to constants.
 - Use `require "dotenv/load"` to load the environment variables.
 - Don't put any `#!/usr/bin/env ruby` at the top of the file.
+- In places where the Python does a type check such as `isinstance(Message)`, the Ruby code will need to use the fully qualified class name, e.g. `is_a?(Anthropic::Message)`
