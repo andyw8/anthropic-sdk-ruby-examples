@@ -9,7 +9,7 @@ MODEL = "claude-3-7-sonnet-latest"
 def add_user_message(messages, message)
   user_message = {
     role: "user",
-    content: (message.is_a?(Hash) && message[:content]) ? message[:content] : message
+    content: message.is_a?(Anthropic::Message) ? message.content : message
   }
   messages << user_message
 end
@@ -17,7 +17,7 @@ end
 def add_assistant_message(messages, message)
   assistant_message = {
     role: "assistant",
-    content: (message.is_a?(Hash) && message[:content]) ? message[:content] : message
+    content: message.is_a?(Anthropic::Message) ? message.content : message
   }
   messages << assistant_message
 end
@@ -34,13 +34,13 @@ def chat(messages, system: nil, temperature: 1.0, stop_sequences: [], tools: nil
   params[:tools] = tools if tools
   params[:system] = system if system
 
-  CLIENT.messages(params)
+  CLIENT.messages.create(**params)
 end
 
 def text_from_message(message)
-  message[:content]
-    .select { |block| block[:type] == "text" }
-    .map { |block| block[:text] }
+  message.content
+    .select { |block| block.type == :text }
+    .map { |block| block.text }
     .join("\n")
 end
 
@@ -187,22 +187,22 @@ def run_tool(tool_name, tool_input)
 end
 
 def run_tools(message)
-  tool_requests = message[:content].select { |block| block[:type] == "tool_use" }
+  tool_requests = message.content.select { |block| block.type == :tool_use }
   tool_result_blocks = []
 
   tool_requests.each do |tool_request|
     begin
-      tool_output = run_tool(tool_request[:name], tool_request[:input])
+      tool_output = run_tool(tool_request.name, tool_request.input)
       tool_result_block = {
         type: "tool_result",
-        tool_use_id: tool_request[:id],
+        tool_use_id: tool_request.id,
         content: JSON.dump(tool_output),
         is_error: false
       }
     rescue => e
       tool_result_block = {
         type: "tool_result",
-        tool_use_id: tool_request[:id],
+        tool_use_id: tool_request.id,
         content: "Error: #{e}",
         is_error: true
       }
@@ -221,7 +221,7 @@ def run_conversation(messages)
     add_assistant_message(messages, response)
     puts text_from_message(response)
 
-    break if response[:stop_reason] != "tool_use"
+    break if response.stop_reason != :tool_use
 
     tool_results = run_tools(response)
     add_user_message(messages, tool_results)
