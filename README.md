@@ -6,7 +6,7 @@ The examples demonstrate how to use the Anthropic SDK for Ruby to interact with 
 
 My hope is to make this a useful resources for learning and for reference.
 
-Most of the conversion has been done by Claude (see the in [custom slash command](./claude/commands/convert.rb) but a few few manual edits were required.
+Most of the conversion has been done by Claude (see the in [custom slash command](/.claude/commands/convert.rb)) but a few few manual edits were required.
 
 ## Examples
 
