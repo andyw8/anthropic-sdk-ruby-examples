@@ -1,20 +1,19 @@
 ---
 description: Convert
+tools: "WebFetch(domain:cc.sj-cdn.net)",
 ---
-
-## Context
-
-- Current git status: !`git status`
-- Current git diff (staged and unstaged changes): !`git diff HEAD`
-- Current branch: !`git branch --show-current`
-- Recent commits: !`git log --oneline -10`
 
 ## Your task
 
-- Read the Python Juypyter notebook at #$ARGUMENTS
-- Convert the notebook to a single file Ruby file
+There are two string below. The first is a path to use for the Ruby output. The second is a URI to fetch:
+
+$ARGUMENTS
+
+Steps:
+- Read the Python Jupyter notebook at the given URI
+- Convert the notebook to a SINGLE Ruby file.
 - Commit this as "Initial conversion to Ruby"
-- Use `ruby -wc` to check the syntax of the Ruby file.
+- Use `bundle exec ruby -wc` to check if the Ruby file is valid.
 - If there are syntax errors, stop and ask the user what to do.
 - Run `standard --fix` to fix any style issues.
 - Commit again if anything was fixed.
