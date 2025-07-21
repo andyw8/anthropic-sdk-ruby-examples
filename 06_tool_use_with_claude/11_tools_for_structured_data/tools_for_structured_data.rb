@@ -37,8 +37,7 @@ def chat(messages, system: nil, temperature: 1.0, stop_sequences: [], tools: nil
   params[:tools] = tools if tools
   params[:system] = system if system
 
-  message = CLIENT.messages(params)
-  message
+  CLIENT.messages(params)
 end
 
 def text_from_message(message)
@@ -62,7 +61,7 @@ ARTICLE_SUMMARY_SCHEMA = {
       },
       key_insights: {
         type: "array",
-        items: { type: "string" },
+        items: {type: "string"},
         description: "A list of the most important takeaways or insights from the article. Each insight should be a complete, concise statement."
       }
     },
@@ -72,7 +71,7 @@ ARTICLE_SUMMARY_SCHEMA = {
 
 def add_duration_to_datetime(datetime_str, duration: 0, unit: "days", input_format: "%Y-%m-%d")
   date = Date.strptime(datetime_str, input_format)
-  
+
   new_date = case unit
   when "seconds"
     date + Rational(duration, 86400) # seconds in a day
@@ -177,7 +176,7 @@ BATCH_TOOL_SCHEMA = {
 # get_current_datetime tool function
 def get_current_datetime(date_format: "%Y-%m-%d %H:%M:%S")
   raise ArgumentError, "date_format cannot be empty" if date_format.nil? || date_format.empty?
-  
+
   Time.now.strftime(date_format)
 end
 
@@ -207,7 +206,7 @@ def run_batch(invocations: [])
 
     tool_output = run_tool(name, args)
 
-    batch_output << { tool_name: name, output: tool_output }
+    batch_output << {tool_name: name, output: tool_output}
   end
 
   batch_output
@@ -296,6 +295,6 @@ add_user_message(messages, text_from_message(response))
 response = chat(
   messages,
   tools: [ARTICLE_SUMMARY_SCHEMA],
-  tool_choice: { type: "tool", name: "article_summary" }
+  tool_choice: {type: "tool", name: "article_summary"}
 )
 puts response.content[0].input
