@@ -29,3 +29,4 @@ tools: "WebFetch(domain:cc.sj-cdn.net)","Bash(curl:*")",Write(),Update()
 - In places where the Python does a type check such as `isinstance(Message)`, the Ruby code will need to use the fully qualified class name, e.g. `is_a?(Anthropic::Message)`-
 - For tool signatures within the converted code, prefer keyword arguments over positional arguments.
 - Don't use `respond_to?`, use `is_a?` checks instead.
+- For the VoyageAI client, name it `VOYAGEAI_CLIENT`, not `CLIENT`.
