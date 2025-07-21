@@ -11,7 +11,7 @@ MODEL = "claude-3-5-sonnet-20241022"
 def add_user_message(messages, message)
   user_message = {
     role: "user",
-    content: message.is_a?(Anthropic::Messages::Message) ? message.content : message
+    content: message.is_a?(Anthropic::Message) ? message.content : message
   }
   messages << user_message
 end
@@ -19,7 +19,7 @@ end
 def add_assistant_message(messages, message)
   assistant_message = {
     role: "assistant",
-    content: message.is_a?(Anthropic::Messages::Message) ? message.content : message
+    content: message.is_a?(Anthropic::Message) ? message.content : message
   }
   messages << assistant_message
 end
@@ -36,7 +36,7 @@ def chat(messages, system: nil, temperature: 1.0, stop_sequences: [], tools: nil
   params[:tools] = tools if tools
   params[:system] = system if system
 
-  CLIENT.messages(params)
+  CLIENT.messages.create(params)
 end
 
 def text_from_message(message)
@@ -293,7 +293,7 @@ def get_text_edit_schema(model)
   case model
   when /^claude-3-5-sonnet/
     {
-      type: "text_editor_20241022",
+      type: "text_editor_20250124",
       name: "str_replace_editor"
     }
   when /^claude-3-7-sonnet/
@@ -330,7 +330,9 @@ messages = []
 
 add_user_message(
   messages,
-  ""
+  %(
+
+  )
 )
 
 run_conversation(messages)
