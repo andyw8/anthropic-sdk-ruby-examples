@@ -130,7 +130,7 @@ class VectorIndex
     if vec1.length != vec2.length
       raise ArgumentError, "Vectors must have the same dimension"
     end
-    Math.sqrt(vec1.zip(vec2).sum { |p, q| (p - q) ** 2 })
+    Math.sqrt(vec1.zip(vec2).sum { |p, q| (p - q)**2 })
   end
 
   def dot_product(vec1, vec2)
@@ -160,13 +160,13 @@ class VectorIndex
 
     dot_prod = dot_product(vec1, vec2)
     cosine_similarity = dot_prod / (mag1 * mag2)
-    cosine_similarity = [[-1.0, cosine_similarity].max, 1.0].min
+    cosine_similarity = cosine_similarity.clamp(-1.0, 1.0)
 
     1.0 - cosine_similarity
   end
 end
 
-text = File.read("./report.md")
+File.read("./report.md")
 
 # 1. Chunk the text by section
 
