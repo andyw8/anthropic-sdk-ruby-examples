@@ -1,6 +1,6 @@
 ---
 description: Convert
-tools: "WebFetch(domain:cc.sj-cdn.net)",
+tools: "WebFetch(domain:cc.sj-cdn.net)","Bash(curl:*")",Write(),Update()
 ---
 
 ## Your task
