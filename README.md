@@ -18,3 +18,4 @@ Most of the conversion has been done by Claude (see the [custom slash command](/
 - [Multiple Tool Turns](06_tool_use_with_claude/08_implementing_multiple_turns/implementing_multiple_turns.rb) - Implementing conversation flows with multiple tool interactions
 - [Using Multiple Tools](06_tool_use_with_claude/09_using_multiple_tools/using_multiple_tools.rb) - Working with multiple tools in a single conversation
 - [Tools for Structured Data](06_tool_use_with_claude/11_tools_for_structured_data/tools_for_structured_data.rb) - Using tools to extract and manipulate structured data from text
+- [Fine-Grained Tool Calling](06_tool_use_with_claude/12_fine_grained_tool_calling/fine_grained_tool_calling.rb) - Advanced tool calling with fine-grained control (failing due to [anthropic-sdk-ruby#108](https://github.com/anthropics/anthropic-sdk-ruby/issues/108))
