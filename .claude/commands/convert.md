@@ -17,6 +17,7 @@ tools: "WebFetch(domain:cc.sj-cdn.net)",
 - Try run the Ruby code
 - Clean up the temporary file.
 - Update the README.md to link to the newly added Ruby file.
+- If any of the code appears to unused (e.g. methods that are never called) then let the user know.
 
 **Notes**:
 - In places where the Python code uses string literal comparisions, the Ruby equivalent is normally a symbol, e.g. for `response.stop_reason`.
