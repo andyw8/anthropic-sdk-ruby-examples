@@ -8,6 +8,12 @@ My hope is to make this a useful resources for learning and for reference.
 
 Most of the conversion has been done by Claude (see the [custom slash command](/.claude/commands/convert.md)) but a few few manual edits were necessary.
 
+## Setup
+
+Copy `.env.example` to `.env` and fill your Anthropic API key.
+
+The Voyage API key is only need for the Retrieval Augmentation (RAG) section.
+
 ## Examples
 
 ### Basic API Usage
