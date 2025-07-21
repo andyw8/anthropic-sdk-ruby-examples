@@ -49,7 +49,15 @@ end
 if __FILE__ == $0
   text = File.read(File.join(__dir__, "report.md"))
 
-  chunks = chunk_by_char(text)
+  # Chunk by character example
+  # chunks = chunk_by_char(text)
+  chunks.each { |chunk| puts chunk + "\n----\n" }
 
+  # Chunk by sentence example
+  chunks = chunk_by_sentence(text)
+  chunks.each { |chunk| puts chunk + "\n----\n" }
+
+  # Chunk by section example
+  chunks = chunk_by_section(text)
   chunks.each { |chunk| puts chunk + "\n----\n" }
 end
