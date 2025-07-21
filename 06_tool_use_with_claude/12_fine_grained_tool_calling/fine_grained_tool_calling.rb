@@ -6,15 +6,15 @@ CLIENT = Anthropic::Client.new
 MODEL = "claude-sonnet-4-20250514"
 
 def add_user_message(messages, message)
-  if message.is_a?(Array)
-    user_message = {
+  user_message = if message.is_a?(Array)
+    {
       role: "user",
       content: message
     }
   else
-    user_message = {
+    {
       role: "user",
-      content: [{ type: "text", text: message }]
+      content: [{type: "text", text: message}]
     }
   end
   messages << user_message
@@ -30,7 +30,7 @@ def add_assistant_message(messages, message)
     content_list = []
     message.content.each do |block|
       if block.type == "text"
-        content_list << { type: "text", text: block.text }
+        content_list << {type: "text", text: block.text}
       elsif block.type == "tool_use"
         content_list << {
           type: "tool_use",
@@ -47,7 +47,7 @@ def add_assistant_message(messages, message)
   else
     assistant_message = {
       role: "assistant",
-      content: [{ type: "text", text: message }]
+      content: [{type: "text", text: message}]
     }
   end
   messages << assistant_message
@@ -232,5 +232,5 @@ add_user_message(
 run_conversation(
   messages,
   tools: [SAVE_ARTICLE_SCHEMA],
-  tool_choice: { type: "tool", name: "save_article" }
+  tool_choice: {type: "tool", name: "save_article"}
 )
