@@ -230,9 +230,12 @@ def run_conversation(messages)
   messages
 end
 
-messages = []
-add_user_message(
-  messages,
-  "What is the current time in HH:MM format? Also, what is the current time in SS format?"
-)
-run_conversation(messages)
+if __FILE__ == $0
+  messages = []
+  add_user_message(
+    messages,
+    "What is the current time in HH:MM format? Also, what is the current time in SS format?"
+  )
+
+  run_conversation(messages)
+end

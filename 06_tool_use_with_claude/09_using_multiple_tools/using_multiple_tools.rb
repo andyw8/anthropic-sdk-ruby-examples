@@ -241,9 +241,11 @@ def run_conversation(messages)
   messages
 end
 
-messages = []
-add_user_message(
-  messages,
-  "Set a reminder for my doctors appointment. Its 177 days after Jan 1st, 2050."
-)
-run_conversation(messages)
+if __FILE__ == $0
+  messages = []
+  add_user_message(
+    messages,
+    "Set a reminder for my doctors appointment. Its 177 days after Jan 1st, 2050."
+  )
+  run_conversation(messages)
+end
