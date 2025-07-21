@@ -1,6 +1,3 @@
-require "bundler/setup"
-require "dotenv/load"
-
 # Chunk by a set number of characters
 def chunk_by_char(text, chunk_size: 150, chunk_overlap: 20)
   chunks = []
@@ -50,11 +47,9 @@ def chunk_by_section(document_text)
 end
 
 if __FILE__ == $0
-  File.open("./report.md", "r") do |f|
-    text = f.read
+  text = File.read(File.join(__dir__, "report.md"))
 
-    chunks = chunk_by_char(text)
+  chunks = chunk_by_char(text)
 
-    chunks.each { |chunk| puts chunk + "\n----\n" }
-  end
+  chunks.each { |chunk| puts chunk + "\n----\n" }
 end
