@@ -1,6 +1,3 @@
-# Install VoyageAI lib
-# gem install voyageai
-
 require "dotenv/load"
 require "voyageai"
 
@@ -20,8 +17,8 @@ def generate_embedding(text, model: "voyage-3-large", input_type: "query")
   result.embeddings[0]
 end
 
-text = File.read("./report.md")
+text = File.read(File.join(__dir__, "report.md"))
 
 chunks = chunk_by_section(text)
 
-generate_embedding(chunks[0])
+pp generate_embedding(chunks[0])
