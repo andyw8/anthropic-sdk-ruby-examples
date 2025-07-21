@@ -166,17 +166,36 @@ class VectorIndex
   end
 end
 
-File.read("./report.md")
+text = File.read(File.join(__dir__, "report.md"))
 
 # 1. Chunk the text by section
+chunks = chunk_by_section(text)
 
 # 2. Generate embeddings for each chunk
+embeddings = generate_embedding(chunks)
 
 # 3. Create a vector store and add each embedding to it
 # Note: converted to a bulk operation to avoid rate limiting errors from VoyageAI
 store = VectorIndex.new
-store.add_documents(chunks.map { |chunk| {"content" => chunk} })
+# [embeddings, chunks].zip do |embedding, chunk|
+#   # store.add_document(embedding, {"content" => chunk})
+#   store.add_document(embedding, {"content" => chunk})
+# end
+
+ENTRIES = chunks.zip(embeddings).map do |chunk, embedding|
+  # store.add_document(embedding, {"content" => chunk})
+   Entry.new(document:, embedding:)
+end
 
 # 4. Some time later, a user will ask a question. Generate an embedding for it
+user_embedding = generate_embedding("What did the software engineering dept do last year?")
 
 # 5. Search the store with the embedding, find the 2 most relevant chunks
+results = store.search(user_embedding, 2)
+
+results.each do |doc, distance|
+  puts distance
+  puts
+  puts doc[:content][..200]
+  puts
+end
