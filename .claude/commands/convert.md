@@ -8,15 +8,17 @@ tools: "WebFetch(domain:cc.sj-cdn.net)","Bash(curl:*")",Write(),Update()
 **Steps**:
 - Download the Python Jupyter notebook at $ARGUMENTS to a temporary file.
 - Convert it to Ruby. Ensure ALL cells from the notebook are converted.
+- Retain the comments from the Jupyter notebook but don't add new ones
 - Save it as single Ruby file (prompt the user for the output path)
 - Commit this as "Initial conversion to Ruby"
 - Use `bundle exec ruby -wc` to check if the Ruby code is valid.
 - If there are syntax errors, stop and ask the user what to do.
 - Run `standardrb --fix` to fix any style issues.
 - Commit again if anything was fixed.
+- Update the README.md to link to the newly added Ruby file.
+- Commit the README changes
 - Try run the Ruby code
 - Clean up the temporary file.
-- Update the README.md to link to the newly added Ruby file.
 - If any of the code appears to unused (e.g. methods that are never called) then let the user know.
 
 **Notes**:
