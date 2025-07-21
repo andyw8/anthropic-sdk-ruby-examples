@@ -13,10 +13,10 @@ def chunk_by_char(text, chunk_size: 150, chunk_overlap: 20)
     chunks << chunk_text
 
     start_idx = if end_idx < text.length
-                  end_idx - chunk_overlap
-                else
-                  text.length
-                end
+      end_idx - chunk_overlap
+    else
+      text.length
+    end
   end
 
   chunks
