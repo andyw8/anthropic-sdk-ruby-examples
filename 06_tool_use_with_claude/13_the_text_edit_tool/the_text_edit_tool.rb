@@ -36,8 +36,7 @@ def chat(messages, system: nil, temperature: 1.0, stop_sequences: [], tools: nil
   params[:tools] = tools if tools
   params[:system] = system if system
 
-  message = CLIENT.messages(params)
-  message
+  CLIENT.messages(params)
 end
 
 def text_from_message(message)
@@ -67,7 +66,7 @@ class TextEditorTool
 
   def backup_file(file_path)
     return "" unless File.exist?(file_path)
-    
+
     file_name = File.basename(file_path)
     backup_path = File.join(@backup_dir, "#{file_name}.#{File.mtime(file_path).to_i}")
     FileUtils.cp(file_path, backup_path, preserve: true)
@@ -77,8 +76,8 @@ class TextEditorTool
   def restore_backup(file_path)
     file_name = File.basename(file_path)
     backups = Dir.entries(@backup_dir)
-                 .select { |f| f.start_with?("#{file_name}.") }
-    
+      .select { |f| f.start_with?("#{file_name}.") }
+
     raise Errno::ENOENT, "No backups found for #{file_path}" if backups.empty?
 
     latest_backup = backups.max
@@ -126,7 +125,6 @@ class TextEditorTool
         result << "#{start_line + index}: #{line}"
       end
 
-      result.join("\n")
     else
       lines = content.split("\n")
       result = []
@@ -134,8 +132,8 @@ class TextEditorTool
         result << "#{index + 1}: #{line}"
       end
 
-      result.join("\n")
     end
+    result.join("\n")
   rescue Errno::EACCES
     raise Errno::EACCES, "Permission denied. Cannot access file."
   end
@@ -232,18 +230,18 @@ def run_tool(tool_name, tool_input)
     case command
     when "view"
       TEXT_EDITOR_TOOL.view(
-        tool_input["path"], 
+        tool_input["path"],
         view_range: tool_input["view_range"]
       )
     when "str_replace"
       TEXT_EDITOR_TOOL.str_replace(
-        tool_input["path"], 
-        tool_input["old_str"], 
+        tool_input["path"],
+        tool_input["old_str"],
         tool_input["new_str"]
       )
     when "create"
       TEXT_EDITOR_TOOL.create(
-        tool_input["path"], 
+        tool_input["path"],
         tool_input["file_text"]
       )
     when "insert"
@@ -275,7 +273,7 @@ def run_tools(message)
         content: JSON.dump(tool_output),
         is_error: false
       }
-    rescue StandardError => e
+    rescue => e
       tool_result_block = {
         type: "tool_result",
         tool_use_id: tool_request.id,
