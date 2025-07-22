@@ -1,8 +1,9 @@
 # Client Setup
 require "dotenv/load"
 require "voyageai"
+require_relative "vector_index"
 
-CLIENT = VoyageAI::Client.new
+VOYAGEAI_CLIENT = VoyageAI::Client.new
 
 # Chunk by section
 def chunk_by_section(document_text)
@@ -14,156 +15,8 @@ end
 def generate_embedding(chunks, model: "voyage-3-large", input_type: "query")
   is_list = chunks.is_a?(Array)
   input = is_list ? chunks : [chunks]
-  result = CLIENT.embed(input, model: model, input_type: input_type)
+  result = VOYAGEAI_CLIENT.embed(input, model: model, input_type: input_type)
   is_list ? result.embeddings : result.embeddings[0]
-end
-
-# VectorIndex implementation
-class VectorIndex
-  attr_reader :vectors, :documents
-
-  def initialize(distance_metric: "cosine", embedding_fn: nil)
-    @vectors = []
-    @documents = []
-    @vector_dim = nil
-    unless ["cosine", "euclidean"].include?(distance_metric)
-      raise ArgumentError, "distance_metric must be 'cosine' or 'euclidean'"
-    end
-    @distance_metric = distance_metric
-    @embedding_fn = embedding_fn
-  end
-
-  def add_document(document)
-    unless @embedding_fn
-      raise ArgumentError, "Embedding function not provided during initialization."
-    end
-    unless document.is_a?(Hash)
-      raise TypeError, "Document must be a hash."
-    end
-    unless document.key?("content")
-      raise ArgumentError, "Document hash must contain a 'content' key."
-    end
-
-    content = document["content"]
-    unless content.is_a?(String)
-      raise TypeError, "Document 'content' must be a string."
-    end
-
-    vector = @embedding_fn.call(content)
-    add_vector(vector: vector, document: document)
-  end
-
-  def search(query, k: 1)
-    return [] if @vectors.empty?
-
-    query_vector = if query.is_a?(String)
-      unless @embedding_fn
-        raise ArgumentError, "Embedding function not provided for string query."
-      end
-      @embedding_fn.call(query)
-    elsif query.is_a?(Array) && query.all? { |x| x.is_a?(Numeric) }
-      query
-    else
-      raise TypeError, "Query must be either a string or an array of numbers."
-    end
-
-    return [] if @vector_dim.nil?
-
-    if query_vector.length != @vector_dim
-      raise ArgumentError, "Query vector dimension mismatch. Expected #{@vector_dim}, got #{query_vector.length}"
-    end
-
-    if k <= 0
-      raise ArgumentError, "k must be a positive integer."
-    end
-
-    dist_func = if @distance_metric == "cosine"
-      method(:cosine_distance)
-    else
-      method(:euclidean_distance)
-    end
-
-    distances = []
-    @vectors.each_with_index do |stored_vector, i|
-      distance = dist_func.call(query_vector, stored_vector)
-      distances << [distance, @documents[i]]
-    end
-
-    distances.sort_by!(&:first)
-
-    distances.first(k).map { |dist, doc| [doc, dist] }
-  end
-
-  def add_vector(vector:, document:)
-    unless vector.is_a?(Array) && vector.all? { |x| x.is_a?(Numeric) }
-      raise TypeError, "Vector must be an array of numbers."
-    end
-    unless document.is_a?(Hash)
-      raise TypeError, "Document must be a hash."
-    end
-    unless document.key?("content")
-      raise ArgumentError, "Document hash must contain a 'content' key."
-    end
-
-    if @vectors.empty?
-      @vector_dim = vector.length
-    elsif vector.length != @vector_dim
-      raise ArgumentError, "Inconsistent vector dimension. Expected #{@vector_dim}, got #{vector.length}"
-    end
-
-    @vectors << vector.dup
-    @documents << document
-  end
-
-  def length
-    @vectors.length
-  end
-
-  def to_s
-    has_embed_fn = @embedding_fn ? "Yes" : "No"
-    "VectorIndex(count=#{length}, dim=#{@vector_dim}, metric='#{@distance_metric}', has_embedding_fn='#{has_embed_fn}')"
-  end
-
-  private
-
-  def euclidean_distance(vec1, vec2)
-    if vec1.length != vec2.length
-      raise ArgumentError, "Vectors must have the same dimension"
-    end
-    Math.sqrt(vec1.zip(vec2).sum { |p, q| (p - q)**2 })
-  end
-
-  def dot_product(vec1, vec2)
-    if vec1.length != vec2.length
-      raise ArgumentError, "Vectors must have the same dimension"
-    end
-    vec1.zip(vec2).sum { |p, q| p * q }
-  end
-
-  def magnitude(vec)
-    Math.sqrt(vec.sum { |x| x * x })
-  end
-
-  def cosine_distance(vec1, vec2)
-    if vec1.length != vec2.length
-      raise ArgumentError, "Vectors must have the same dimension"
-    end
-
-    mag1 = magnitude(vec1)
-    mag2 = magnitude(vec2)
-
-    if mag1 == 0 && mag2 == 0
-      return 0.0
-    elsif mag1 == 0 || mag2 == 0
-      return 1.0
-    end
-
-    dot_prod = dot_product(vec1, vec2)
-    cosine_similarity = dot_prod / (mag1 * mag2)
-    cosine_similarity = cosine_similarity.clamp(-1.0, 1.0)
-
-    1.0 - cosine_similarity
-  end
 end
 
 text = File.read(File.join(__dir__, "report.md"))
@@ -177,25 +30,31 @@ embeddings = generate_embedding(chunks)
 # 3. Create a vector store and add each embedding to it
 # Note: converted to a bulk operation to avoid rate limiting errors from VoyageAI
 store = VectorIndex.new
-# [embeddings, chunks].zip do |embedding, chunk|
-#   # store.add_document(embedding, {"content" => chunk})
-#   store.add_document(embedding, {"content" => chunk})
-# end
 
-ENTRIES = chunks.zip(embeddings).map do |chunk, embedding|
-  # store.add_document(embedding, {"content" => chunk})
-   Entry.new(document:, embedding:)
+# binding.irb
+# [embeddings, chunks].zip do |embedding, chunk|
+embeddings.zip(chunks) do |embedding, chunk|
+  # binding.irb
+  store.add_vector(vector: embedding, document: {"content" => chunk})
 end
+
+# embeddings = VOYAGEAI_CLIENT.embed(chunks).embeddings
+
+# chunks.zip(embeddings).map do |chunk, embedding|
+#   # binding.irb
+#   # store.add_vector(vector: embedding, document: {"content" => chunk})
+#   store.add_vector(vector: embedding, document: {"content" => chunk})
+# end
 
 # 4. Some time later, a user will ask a question. Generate an embedding for it
 user_embedding = generate_embedding("What did the software engineering dept do last year?")
 
 # 5. Search the store with the embedding, find the 2 most relevant chunks
-results = store.search(user_embedding, 2)
+results = store.search(user_embedding, k: 2)
 
 results.each do |doc, distance|
   puts distance
   puts
-  puts doc[:content][..200]
+  puts doc.fetch("content")[...200]
   puts
 end
