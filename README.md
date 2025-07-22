@@ -17,18 +17,18 @@ Copy `.env.example` to `.env` and fill in your Anthropic API key.
 ## Examples
 
 ### Basic API Usage
-- [Making a Request](03_accessing_claude_with_the_api/03_making_a_request/making_a_request.rb) - Basic example of making an API request to Claude
+- [Making a Request](03_accessing_claude_with_the_api/03_making_a_request) - Basic example of making an API request to Claude
 
 ### Tool Use
-- [Tool Functions](06_tool_use_with_claude/03_tool_functions/tool_functions.rb) - How to define and use tool functions with Claude
-- [Multiple Tool Turns](06_tool_use_with_claude/08_implementing_multiple_turns/implementing_multiple_turns.rb) - Implementing conversation flows with multiple tool interactions
-- [Using Multiple Tools](06_tool_use_with_claude/09_using_multiple_tools/using_multiple_tools.rb) - Working with multiple tools in a single conversation
-- [Tools for Structured Data](06_tool_use_with_claude/11_tools_for_structured_data/tools_for_structured_data.rb) - Using tools to extract and manipulate structured data from text
-- [Fine-Grained Tool Calling](06_tool_use_with_claude/12_fine_grained_tool_calling/fine_grained_tool_calling.rb) - Advanced tool calling with fine-grained control (failing due to [anthropic-sdk-ruby#108](https://github.com/anthropics/anthropic-sdk-ruby/issues/108))
-- [The Text Edit Tool](06_tool_use_with_claude/13_the_text_edit_tool/the_text_edit_tool.rb) - Implementation of a text editor tool for file manipulation with conversation loops
+- [Tool Functions](06_tool_use_with_claude/03_tool_functions) - How to define and use tool functions with Claude
+- [Multiple Tool Turns](06_tool_use_with_claude/08_implementing_multiple_turns) - Implementing conversation flows with multiple tool interactions
+- [Using Multiple Tools](06_tool_use_with_claude/09_using_multiple_tools) - Working with multiple tools in a single conversation
+- [Tools for Structured Data](06_tool_use_with_claude/11_tools_for_structured_data) - Using tools to extract and manipulate structured data from text
+- [Fine-Grained Tool Calling](06_tool_use_with_claude/12_fine_grained_tool_calling) - Advanced tool calling with fine-grained control (failing due to [anthropic-sdk-ruby#108](https://github.com/anthropics/anthropic-sdk-ruby/issues/108))
+- [The Text Edit Tool](06_tool_use_with_claude/13_the_text_edit_tool) - Implementation of a text editor tool for file manipulation with conversation loops
 
 ### Retrieval Augmented Generation
-- [Text Chunking Strategies](07_retrieval_augmented_generation/02_text_chunking_strategies/text_chunking_strategies.rb) - Different strategies for chunking text including character-based, sentence-based, and section-based approaches
-- [Text Embeddings](07_retrieval_augmented_generation/03_text_embeddings/text_embeddings.rb) - Generate text embeddings using VoyageAI for RAG applications
-- [Implementing the RAG Flow](07_retrieval_augmented_generation/05_implementing_the_rag_flow/implementing_the_rag_flow.rb) - Implementation of vector database functionality and RAG flow components
+- [Text Chunking Strategies](07_retrieval_augmented_generation/02_text_chunking_strategies) - Different strategies for chunking text including character-based, sentence-based, and section-based approaches
+- [Text Embeddings](07_retrieval_augmented_generation/03_text_embeddings) - Generate text embeddings using VoyageAI for RAG applications
+- [Implementing the RAG Flow](07_retrieval_augmented_generation/05_implementing_the_rag_flow) - Implementation of vector database functionality and RAG flow components
   - Note: This outputs different results than shown in the course video, but it matches what I see when running the Python Jupyter notebook.
