@@ -31,3 +31,4 @@ Copy `.env.example` to `.env` and fill in your Anthropic API key.
 - [Text Chunking Strategies](07_retrieval_augmented_generation/02_text_chunking_strategies/text_chunking_strategies.rb) - Different strategies for chunking text including character-based, sentence-based, and section-based approaches
 - [Text Embeddings](07_retrieval_augmented_generation/03_text_embeddings/text_embeddings.rb) - Generate text embeddings using VoyageAI for RAG applications
 - [Implementing the RAG Flow](07_retrieval_augmented_generation/05_implementing_the_rag_flow/implementing_the_rag_flow.rb) - Implementation of vector database functionality and RAG flow components
+  - Note: This outputs different results than shown in the course video, but it matches what I see when running the Python Jupyter notebook.
