@@ -75,7 +75,6 @@ class VectorIndex
 
   def add_vector(vector:, document:)
     unless vector.is_a?(Array) && vector.all? { |x| x.is_a?(Numeric) }
-      binding.irb
       raise TypeError, "Vector must be an array of numbers."
     end
     unless document.is_a?(Hash)
