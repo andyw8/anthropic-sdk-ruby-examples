@@ -28,23 +28,11 @@ chunks = chunk_by_section(text)
 embeddings = generate_embedding(chunks)
 
 # 3. Create a vector store and add each embedding to it
-# Note: converted to a bulk operation to avoid rate limiting errors from VoyageAI
 store = VectorIndex.new
 
-# binding.irb
-# [embeddings, chunks].zip do |embedding, chunk|
 embeddings.zip(chunks) do |embedding, chunk|
-  # binding.irb
   store.add_vector(vector: embedding, document: {"content" => chunk})
 end
-
-# embeddings = VOYAGEAI_CLIENT.embed(chunks).embeddings
-
-# chunks.zip(embeddings).map do |chunk, embedding|
-#   # binding.irb
-#   # store.add_vector(vector: embedding, document: {"content" => chunk})
-#   store.add_vector(vector: embedding, document: {"content" => chunk})
-# end
 
 # 4. Some time later, a user will ask a question. Generate an embedding for it
 user_embedding = generate_embedding("What did the software engineering dept do last year?")
