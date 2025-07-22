@@ -12,7 +12,7 @@ Most of the conversion has been done by Claude (see the [custom slash command](/
 
 Copy `.env.example` to `.env` and fill your Anthropic API key.
 
-(the VoyageAI API key is only needed for the Retrieval Augmentation (RAG) section.)
+(the VoyageAI API key is only needed for the Retrieval Augmentated Generation (RAG) section.)
 
 ## Examples
 
