@@ -19,7 +19,7 @@ def generate_embedding(chunks, model: "voyage-3-large", input_type: "query")
   is_list ? result.embeddings : result.embeddings[0]
 end
 
-text = File.read(File.join(__dir__, "report.md"))
+text = File.read(File.join(__dir__, "..", "report.md"))
 
 # 1. Chunk the text by section
 chunks = chunk_by_section(text)

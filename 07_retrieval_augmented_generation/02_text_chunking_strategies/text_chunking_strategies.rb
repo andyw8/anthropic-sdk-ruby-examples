@@ -47,7 +47,7 @@ def chunk_by_section(document_text)
 end
 
 if __FILE__ == $0
-  text = File.read(File.join(__dir__, "report.md"))
+  text = File.read(File.join(__dir__, "..", "report.md"))
 
   # Chunk by character example
   # chunks = chunk_by_char(text)
