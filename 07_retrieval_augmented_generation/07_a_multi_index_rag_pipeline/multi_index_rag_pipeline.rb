@@ -6,7 +6,7 @@ VOYAGEAI_CLIENT = VoyageAI::Client.new
 
 # Chunk by section
 def chunk_by_section(document_text)
-  document_text.split(/\n## /)
+  document_text.split("\n## ")
 end
 
 # Embedding Generation
@@ -34,7 +34,7 @@ class VectorIndex
 
   def add_document(document)
     unless @embedding_fn
-      raise RuntimeError, "Embedding function not provided during initialization."
+      raise "Embedding function not provided during initialization."
     end
     unless document.is_a?(Hash)
       raise TypeError, "Document must be a hash."
@@ -54,7 +54,7 @@ class VectorIndex
 
   def add_documents(documents)
     unless @embedding_fn
-      raise RuntimeError, "Embedding function not provided during initialization."
+      raise "Embedding function not provided during initialization."
     end
 
     unless documents.is_a?(Array)
@@ -89,7 +89,7 @@ class VectorIndex
 
     if query.is_a?(String)
       unless @embedding_fn
-        raise RuntimeError, "Embedding function not provided for string query."
+        raise "Embedding function not provided for string query."
       end
       query_vector = @embedding_fn.call(query)
     elsif query.is_a?(Array) && query.all? { |x| x.is_a?(Numeric) }
@@ -108,7 +108,7 @@ class VectorIndex
       raise ArgumentError, "k must be a positive integer."
     end
 
-    dist_func = @distance_metric == "cosine" ? method(:cosine_distance) : method(:euclidean_distance)
+    dist_func = (@distance_metric == "cosine") ? method(:cosine_distance) : method(:euclidean_distance)
 
     distances = []
     @vectors.each_with_index do |stored_vector, i|
@@ -157,7 +157,7 @@ class VectorIndex
     if vec1.length != vec2.length
       raise ArgumentError, "Vectors must have the same dimension"
     end
-    Math.sqrt(vec1.zip(vec2).map { |p, q| (p - q) ** 2 }.sum)
+    Math.sqrt(vec1.zip(vec2).map { |p, q| (p - q)**2 }.sum)
   end
 
   def dot_product(vec1, vec2)
@@ -187,7 +187,7 @@ class VectorIndex
 
     dot_prod = dot_product(vec1, vec2)
     cosine_similarity = dot_prod / (mag1 * mag2)
-    cosine_similarity = [[-1.0, cosine_similarity].max, 1.0].min
+    cosine_similarity = cosine_similarity.clamp(-1.0, 1.0)
 
     1.0 - cosine_similarity
   end
@@ -424,7 +424,7 @@ class Retriever
     end
 
     calc_rrf_score = lambda do |ranks|
-      ranks.map { |r| r == Float::INFINITY ? 0 : 1.0 / (k_rrf + r) }.sum
+      ranks.map { |r| (r == Float::INFINITY) ? 0 : 1.0 / (k_rrf + r) }.sum
     end
 
     scored_docs = doc_ranks.values.map do |ranks|
