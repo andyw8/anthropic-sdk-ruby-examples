@@ -42,7 +42,5 @@ results = store.search(user_embedding, k: 2)
 
 results.each do |doc, distance|
   puts distance
-  puts
   puts doc.fetch("content")[...200]
-  puts
 end
