@@ -1,3 +1,6 @@
+# The Retriever acts as a coordinator that forwards user queries to both
+# indexes, collects their results, and merges them using a technique called reciprocal rank fusion.
+
 class Retriever
   def initialize(*indexes)
     if indexes.empty?
