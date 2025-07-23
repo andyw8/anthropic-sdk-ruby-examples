@@ -4,7 +4,7 @@ This repository contains examples from the course [Claude with the Anthropic API
 
 The examples demonstrate how to use the Anthropic SDK for Ruby to interact with Claude and build applications using the Anthropic API.
 
-My hope is to make this a useful resources for learning and for reference.
+My hope is to make this a useful resource for learning and for reference.
 
 Most of the conversion has been done by Claude (see the [custom slash command](/.claude/commands/convert.md)) but a some manual edits were made, either out of neccessity, or to use idiomatic Ruby.
 
