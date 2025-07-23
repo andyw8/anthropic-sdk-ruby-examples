@@ -34,3 +34,4 @@ Copy `.env.example` to `.env` and fill in your Anthropic API key.
   - Note: This outputs different results than shown in the course video, but it matches what I see when running the Python Jupyter notebook.
 - [Multi-Index RAG Pipeline](07_retrieval_augmented_generation/07_a_multi_index_rag_pipeline) - A hybrid RAG system combining vector search and BM25 lexical search for improved retrieval accuracy
   - Note: This outputs different results than shown in the course video. I need to investigate further.
+- [Reranking Results](07_retrieval_augmented_generation/08_reranking_results) - Implementation of result reranking using Claude to improve the relevance of retrieved documents
