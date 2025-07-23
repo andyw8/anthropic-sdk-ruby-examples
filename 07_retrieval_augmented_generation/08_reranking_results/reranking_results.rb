@@ -37,8 +37,7 @@ def chat(messages, system: nil, temperature: 1.0, stop_sequences: [], tools: nil
   params[:tools] = tools if tools
   params[:system] = system if system
 
-  message = ANTHROPIC_CLIENT.messages(params)
-  message
+  ANTHROPIC_CLIENT.messages(params)
 end
 
 def text_from_message(message)
@@ -127,7 +126,7 @@ class VectorIndex
 
     raise ArgumentError, "k must be a positive integer." if k <= 0
 
-    dist_func = @distance_metric == "cosine" ? method(:cosine_distance) : method(:euclidean_distance)
+    dist_func = (@distance_metric == "cosine") ? method(:cosine_distance) : method(:euclidean_distance)
 
     distances = []
     @vectors.each_with_index do |stored_vector, i|
@@ -170,7 +169,7 @@ class VectorIndex
 
   def euclidean_distance(vec1, vec2)
     raise ArgumentError, "Vectors must have the same dimension" if vec1.length != vec2.length
-    Math.sqrt(vec1.zip(vec2).sum { |p, q| (p - q) ** 2 })
+    Math.sqrt(vec1.zip(vec2).sum { |p, q| (p - q)**2 })
   end
 
   def dot_product(vec1, vec2)
@@ -193,7 +192,7 @@ class VectorIndex
 
     dot_prod = dot_product(vec1, vec2)
     cosine_similarity = dot_prod / (mag1 * mag2)
-    cosine_similarity = [[-1.0, cosine_similarity].max, 1.0].min
+    cosine_similarity = cosine_similarity.clamp(-1.0, 1.0)
 
     1.0 - cosine_similarity
   end
@@ -408,12 +407,12 @@ class Retriever
       end
     end
 
-    def calc_rrf_score(ranks, k_rrf)
-      ranks.sum { |r| r == Float::INFINITY ? 0 : 1.0 / (k_rrf + r) }
+    calc_rrf_score = lambda do |ranks, k_rrf|
+      ranks.sum { |r| (r == Float::INFINITY) ? 0 : 1.0 / (k_rrf + r) }
     end
 
     scored_docs = doc_ranks.values.map do |ranks|
-      [ranks["doc_obj"], calc_rrf_score(ranks["ranks"], k_rrf)]
+      [ranks["doc_obj"], calc_rrf_score.call(ranks["ranks"], k_rrf)]
     end
 
     filtered_docs = scored_docs.select { |_, score| score > 0 }
@@ -460,10 +459,10 @@ def reranker_fn(docs, query_text, k)
   joined_docs = docs.map do |doc|
     <<~DOC
 
-            <document>
-            <document_id>#{doc["id"]}</document_id>
-            <document_content>#{doc["content"]}</document_content>
-            </document>
+      <document>
+      <document_id>#{doc["id"]}</document_id>
+      <document_content>#{doc["content"]}</document_content>
+      </document>
     DOC
   end.join
 
