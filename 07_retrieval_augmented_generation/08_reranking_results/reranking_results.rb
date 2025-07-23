@@ -37,11 +37,11 @@ def chat(messages, system: nil, temperature: 1.0, stop_sequences: [], tools: nil
   params[:tools] = tools if tools
   params[:system] = system if system
 
-  ANTHROPIC_CLIENT.messages(params)
+  ANTHROPIC_CLIENT.messages.create(**params)
 end
 
 def text_from_message(message)
-  message.content.select { |block| block.type == "text" }.map(&:text).join("\n")
+  message.content.select { |block| block.type == :text }.map(&:text).join("\n")
 end
 
 # Chunk by section
@@ -54,7 +54,7 @@ end
 def generate_embedding(chunks, model: "voyage-3-large", input_type: "query")
   is_list = chunks.is_a?(Array)
   input = is_list ? chunks : [chunks]
-  result = VOYAGEAI_CLIENT.embed(input: input, model: model, input_type: input_type)
+  result = VOYAGEAI_CLIENT.embed(input, model: model, input_type: input_type)
   is_list ? result.embeddings : result.embeddings[0]
 end
 
@@ -451,7 +451,7 @@ class Retriever
 end
 
 # Chunk source text by section
-text = File.read("./report.md")
+text = File.read(File.join(__dir__, "..", "report.md"))
 chunks = chunk_by_section(text)
 
 # Reranker function
@@ -474,7 +474,7 @@ def reranker_fn(docs, query_text, k)
     <question>
     #{query_text}
     </question>
-    
+
     Here are the documents to select from:
     <documents>
     #{joined_docs}
