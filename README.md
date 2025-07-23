@@ -35,3 +35,6 @@ Copy `.env.example` to `.env` and fill in your Anthropic API key.
 - [Multi-Index RAG Pipeline](07_retrieval_augmented_generation/07_a_multi_index_rag_pipeline) - A hybrid RAG system combining vector search and BM25 lexical search for improved retrieval accuracy
   - Note: This outputs different results than shown in the course video. I need to investigate further.
 - [Reranking Results](07_retrieval_augmented_generation/08_reranking_results) - Implementation of result reranking using Claude to improve the relevance of retrieved documents
+
+### Features of Claude
+- [Prompt Caching in Action](08_features_of_claude/07_prompt_caching_in_action) - Demonstration of prompt caching techniques with large prompts and tool schemas
