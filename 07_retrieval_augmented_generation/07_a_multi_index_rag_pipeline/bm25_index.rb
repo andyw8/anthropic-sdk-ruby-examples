@@ -1,5 +1,3 @@
-require "set"
-
 class BM25Index
   attr_reader :documents
 
