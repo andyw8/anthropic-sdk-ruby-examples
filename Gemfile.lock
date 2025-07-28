@@ -1,15 +1,10 @@
-GIT
-  remote: https://github.com/anthropics/anthropic-sdk-ruby.git
-  revision: f8c8dc6ca49576a10b8d18ded69419b1af2250be
-  specs:
-    anthropic (1.2.0)
-      connection_pool
-
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    anthropic (1.3.0)
+      connection_pool
     ast (2.4.3)
     bigdecimal (3.2.2)
     connection_pool (2.5.3)
@@ -117,7 +112,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  anthropic!
+  anthropic
   debug
   dotenv
   mcp

@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "anthropic", github: "anthropics/anthropic-sdk-ruby"
+gem "anthropic"
 gem "dotenv"
 gem "debug"
 gem "mcp"
