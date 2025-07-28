@@ -51,12 +51,11 @@ I have not implemented a client. I suggest using the [Claude for desktop](https:
 
 ```json
 {
-    "ruby-mcp-demo": {
-      "command": "/Users/andy/.local/share/mise/installs/ruby/3.4.4/bin/ruby",
-      "args": [
-        "/Users/andyw8/github.com/src/anthropic-sdk-ruby-examples/09_model_context_protocol/stdio_server.rb"
-      ]
-    }
+  "ruby-mcp-demo": {
+    "command": "/Users/andy/.local/share/mise/installs/ruby/3.4.4/bin/ruby",
+    "args": [
+      "/Users/andyw8/github.com/src/anthropic-sdk-ruby-examples/09_model_context_protocol/stdio_server.rb"
+    ]
   }
 }
 ```
