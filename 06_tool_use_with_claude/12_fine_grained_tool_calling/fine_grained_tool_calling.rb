@@ -67,12 +67,7 @@ def chat_stream(messages, system: nil, temperature: 1.0, stop_sequences: [], too
   params[:system] = system if system
   params[:betas] = betas unless betas.empty?
 
-  begin
-    CLIENT.beta.messages.stream(**params)
-  rescue ArgumentError
-    puts "Expected failure, see https://github.com/anthropics/anthropic-sdk-ruby/issues/108"
-    exit(1)
-  end
+  CLIENT.beta.messages.stream(params)
 end
 
 def text_from_message(message)
