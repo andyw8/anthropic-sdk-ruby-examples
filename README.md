@@ -38,3 +38,25 @@ Copy `.env.example` to `.env` and fill in your Anthropic API key.
 
 ### Features of Claude
 - [Prompt Caching in Action](08_features_of_claude/07_prompt_caching_in_action) - Demonstration of prompt caching techniques with large prompts and tool schemas
+
+### Model Context Protocol
+
+I have adapted the example to use the [official Ruby SDK for the Model Context Protocol](https://github.com/modelcontextprotocol/ruby-sdk).
+
+- [stdio_server.rb](09_model_context_protocol/stdio_server.rb) - MCP Server (using stdio transport)
+
+When using the MCP inspector, set **command** to `ruby` and **arguments** to the absolute path of `stdio_server.rb`.
+
+I have not implemented a client. I suggest using the [Claude for desktop](https://claude.ai/download) or Claude Code for trying it out. See below for a sample config for `claude_desktop_config.json`. You will likely need to explictly specify a Ruby version to avoid it falling to back the system Ruby version. The example shows it for [mise](https://mise.jdx.dev/lang/ruby.html).
+
+```json
+{
+    "ruby-mcp-demo": {
+      "command": "/Users/andy/.local/share/mise/installs/ruby/3.4.4/bin/ruby",
+      "args": [
+        "/Users/andyw8/github.com/src/anthropic-sdk-ruby-examples/09_model_context_protocol/stdio_server.rb"
+      ]
+    }
+  }
+}
+```
