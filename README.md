@@ -2,7 +2,7 @@
 
 This repository contains examples from the course [Claude with the Anthropic API](https://anthropic.skilljar.com/claude-with-the-anthropic-api/) converted to Ruby.
 
-The examples demonstrate how to use the Anthropic SDK for Ruby to interact with Claude and build applications using the Anthropic API.
+The examples demonstrate how to use the [Anthropic SDK for Ruby](https://github.com/anthropics/anthropic-sdk-ruby) to interact with Claude and build applications using the Anthropic API.
 
 My hope is to make this a useful resource for learning and for reference.
 
