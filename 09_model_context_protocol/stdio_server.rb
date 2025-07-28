@@ -16,7 +16,7 @@ class ReadDocContents < MCP::Tool
   description "Read the contents of a document and return it as a string."
   input_schema(
     properties: {
-      doc_id: { type: "string" },
+      doc_id: {type: "string"}
     },
     required: ["doc_id"]
   )
@@ -83,7 +83,7 @@ MY_RESOURCE_TEMPLATE = MCP::ResourceTemplate.new(
   uri_template: "docs://documents/{id}",
   name: "Test resource template",
   description: "Test resource",
-  mime_type: "text/plain",
+  mime_type: "text/plain"
 )
 
 server = MCP::Server.new(
@@ -92,13 +92,12 @@ server = MCP::Server.new(
   prompts: [Format],
   resources: [MY_RESOURCE],
   resource_templates: [MY_RESOURCE_TEMPLATE]
-
 )
 
 server.resources_read_handler do |params|
   parsed_uri = URI(params[:uri]).
 
-  text = nil
+    text = nil
   if parsed_uri.path.empty?
     text = DOCS.keys
   else
