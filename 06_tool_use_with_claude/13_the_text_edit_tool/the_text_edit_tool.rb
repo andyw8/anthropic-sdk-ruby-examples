@@ -36,12 +36,12 @@ def chat(messages, system: nil, temperature: 1.0, stop_sequences: [], tools: nil
   params[:tools] = tools if tools
   params[:system] = system if system
 
-  CLIENT.messages.create(params)
+  CLIENT.messages.create(**params)
 end
 
 def text_from_message(message)
   message.content
-    .select { |block| block.type == "text" }
+    .select { |block| block.type == :text }
     .map(&:text)
     .join("\n")
 end
@@ -221,37 +221,37 @@ class TextEditorTool
 end
 
 # Process Tool Call Requests
-TEXT_EDITOR_TOOL = TextEditorTool.new
+TEXT_EDITOR_TOOL = TextEditorTool.new(base_dir: Dir.pwd)
 
 def run_tool(tool_name, tool_input)
   case tool_name
   when "str_replace_editor"
-    command = tool_input["command"]
+    command = tool_input[:command]
     case command
     when "view"
       TEXT_EDITOR_TOOL.view(
-        tool_input["path"],
-        view_range: tool_input["view_range"]
+        tool_input[:path],
+        view_range: tool_input[:view_range]
       )
     when "str_replace"
       TEXT_EDITOR_TOOL.str_replace(
-        tool_input["path"],
-        tool_input["old_str"],
-        tool_input["new_str"]
+        tool_input[:path],
+        tool_input[:old_str],
+        tool_input[:new_str]
       )
     when "create"
       TEXT_EDITOR_TOOL.create(
-        tool_input["path"],
-        tool_input["file_text"]
+        tool_input[:path],
+        tool_input[:file_text]
       )
     when "insert"
       TEXT_EDITOR_TOOL.insert(
-        tool_input["path"],
-        tool_input["insert_line"],
-        tool_input["new_str"]
+        tool_input[:path],
+        tool_input[:insert_line],
+        tool_input[:new_str]
       )
     when "undo_edit"
-      TEXT_EDITOR_TOOL.undo_edit(tool_input["path"])
+      TEXT_EDITOR_TOOL.undo_edit(tool_input[:path])
     else
       raise StandardError, "Unknown text editor command: #{command}"
     end
@@ -261,7 +261,7 @@ def run_tool(tool_name, tool_input)
 end
 
 def run_tools(message)
-  tool_requests = message.content.select { |block| block.type == "tool_use" }
+  tool_requests = message.content.select { |block| block.type == :tool_use }
   tool_result_blocks = []
 
   tool_requests.each do |tool_request|
@@ -330,9 +330,8 @@ messages = []
 
 add_user_message(
   messages,
-  %(
-
-  )
+  # "Open the ./main.rb file and write out a method to calculate pi to the 5th digit. Then create a `/test.rb` file to test your implementation."
+  "Open the 06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and summarize its contents. if it cannot be found, list the paths that were checked."
 )
 
 run_conversation(messages)
