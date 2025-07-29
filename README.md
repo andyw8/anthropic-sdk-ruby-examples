@@ -25,7 +25,7 @@ Copy `.env.example` to `.env` and fill in your Anthropic API key.
 - [Using Multiple Tools](06_tool_use_with_claude/09_using_multiple_tools) - Working with multiple tools in a single conversation
 - [Tools for Structured Data](06_tool_use_with_claude/11_tools_for_structured_data) - Using tools to extract and manipulate structured data from text
 - [Fine-Grained Tool Calling](06_tool_use_with_claude/12_fine_grained_tool_calling) - Advanced tool calling with fine-grained control (failing due to [anthropic-sdk-ruby#108](https://github.com/anthropics/anthropic-sdk-ruby/issues/108))
-- [The Text Edit Tool](06_tool_use_with_claude/13_the_text_edit_tool) - Implementation of a text editor tool for file manipulation with conversation loops (failure because its expected the files to be in `/repo`)
+- [The Text Edit Tool](06_tool_use_with_claude/13_the_text_edit_tool) - Implementation of a text editor tool for file manipulation with conversation loops (failure because its expecting the files to be in `/repo`)
 
 ### Retrieval Augmented Generation
 - [Text Chunking Strategies](07_retrieval_augmented_generation/02_text_chunking_strategies) - Different strategies for chunking text including character-based, sentence-based, and section-based approaches
