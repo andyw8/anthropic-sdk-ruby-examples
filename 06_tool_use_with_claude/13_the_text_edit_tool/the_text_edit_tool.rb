@@ -3,9 +3,8 @@ require "anthropic"
 require "json"
 require "fileutils"
 
-# Load env variables and create client
 CLIENT = Anthropic::Client.new
-MODEL = "claude-3-5-sonnet-20241022"
+MODEL = "claude-3-7-sonnet-latest"
 
 # Helper functions
 def add_user_message(messages, message)
@@ -291,11 +290,6 @@ end
 # Make the text edit schema based on the model version being used
 def get_text_edit_schema(model)
   case model
-  when /^claude-3-5-sonnet/
-    {
-      type: "text_editor_20250124",
-      name: "str_replace_editor"
-    }
   when /^claude-3-7-sonnet/
     {
       type: "text_editor_20250124",
@@ -330,8 +324,8 @@ messages = []
 
 add_user_message(
   messages,
-  # "Open the ./main.rb file and write out a method to calculate pi to the 5th digit. Then create a `/test.rb` file to test your implementation."
-  "Open the 06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and summarize its contents. if it cannot be found, list the paths that were checked."
+  # "Open the 06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and summarize its contents."
+  "Open the ./06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and write out a method to calculate pi to the 5th digit. Then create a `06_tool_use_with_claude/13_the_text_edit_tool/test.rb` file to test your implementation."
 )
 
 run_conversation(messages)
