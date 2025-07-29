@@ -41,6 +41,7 @@ Core gems from Gemfile:
 
 - Examples are meant to be run individually, not as a test suite
 - StandardRB is enforced via CI - always run before committing
-- Many examples require ANTHROPIC_API_KEY in .env file, assume already present
+- Many examples require ANTHROPIC_API_KEY in .env file, assume already present.
+- Run examples from the root directory ensure the .env file is loaded
 - RAG examples additionally require VOYAGEAI_API_KEY
 - Some examples have known issues (see README for details)
