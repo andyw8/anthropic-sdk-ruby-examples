@@ -48,9 +48,9 @@ def chat(messages, system: nil, temperature: 1.0, stop_sequences: [], tools: nil
   if system
     params["system"] = [
       {
-          type: "text",
-          text: system,
-          cache_control: {type: "ephemeral"}
+        type: "text",
+        text: system,
+        cache_control: {type: "ephemeral"}
       }
     ]
   end
@@ -66,7 +66,7 @@ end
 CODE_PROMPT = File.read(File.join(__dir__, "code_prompt.txt"))
 
 # Tool Schemas, ~1.7k tokens
-require_relative "tool_schemas.rb"
+require_relative "tool_schemas"
 
 tools = [
   DB_QUERY_SCHEMA,
