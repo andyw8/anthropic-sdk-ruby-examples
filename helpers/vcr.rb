@@ -6,9 +6,8 @@ VCR.configure do |config|
   config.filter_sensitive_data('<X-API-KEY>') { |interaction| interaction.request.headers['X-Api-Key']&.first }
 end
 
-def with_vcr(&block)
-  cassette = Pathname(__FILE__).split.last.to_s.sub(".rb", "")
-  VCR.use_cassette(cassette) do
+def with_vcr(cassette_name, &block)
+  VCR.use_cassette(cassette_name) do
     yield
   end
 end

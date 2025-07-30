@@ -46,7 +46,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 29 Jul 2025 22:43:06 GMT
+      - Wed, 30 Jul 2025 18:37:06 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -58,27 +58,27 @@ http_interactions:
       Anthropic-Ratelimit-Input-Tokens-Remaining:
       - '30000'
       Anthropic-Ratelimit-Input-Tokens-Reset:
-      - '2025-07-29T22:43:05Z'
+      - '2025-07-30T18:37:06Z'
       Anthropic-Ratelimit-Output-Tokens-Limit:
       - '8000'
       Anthropic-Ratelimit-Output-Tokens-Remaining:
       - '8000'
       Anthropic-Ratelimit-Output-Tokens-Reset:
-      - '2025-07-29T22:43:06Z'
+      - '2025-07-30T18:37:06Z'
       Anthropic-Ratelimit-Requests-Limit:
       - '50'
       Anthropic-Ratelimit-Requests-Remaining:
       - '49'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2025-07-29T22:43:06Z'
+      - '2025-07-30T18:37:06Z'
       Anthropic-Ratelimit-Tokens-Limit:
       - '38000'
       Anthropic-Ratelimit-Tokens-Remaining:
       - '38000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2025-07-29T22:43:05Z'
+      - '2025-07-30T18:37:06Z'
       Request-Id:
-      - req_011CRc7p3UG6HA83tSFvt69p
+      - req_011CRdgrwG8p7FWSQC6Hgzqf
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Anthropic-Organization-Id:
@@ -92,13 +92,13 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 9670221539d9ab90-YYZ
+      - 9676f71b9ccaac46-YYZ
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_01G6dAUWfPRrBErkpytyiNQ5","type":"message","role":"assistant","model":"claude-sonnet-4-20250514","content":[{"type":"text","text":"Quantum
-        computing is a revolutionary computing paradigm that harnesses quantum mechanical
+      string: '{"id":"msg_01WUTBKKsq6AhSNUiEUmzyNv","type":"message","role":"assistant","model":"claude-sonnet-4-20250514","content":[{"type":"text","text":"Quantum
+        computing is a revolutionary computing approach that uses quantum mechanical
         phenomena like superposition and entanglement to process information in ways
         that can potentially solve certain problems exponentially faster than classical
-        computers."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":16,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":43,"service_tier":"standard"}}'
-  recorded_at: Tue, 29 Jul 2025 22:43:06 GMT
+        computers."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":16,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":41,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:37:06 GMT
 recorded_with: VCR 6.3.1
