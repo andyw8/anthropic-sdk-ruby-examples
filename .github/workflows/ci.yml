@@ -22,5 +22,8 @@ jobs:
       - name: Run StandardRB
         run: bundle exec standardrb
 
+      - name: Copy example config
+        run: cp .env.example .env
+
       - name: Run all examples
         run: bundle exec ruby run_all_examples.rb
