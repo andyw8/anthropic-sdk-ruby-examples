@@ -1,5 +1,6 @@
 require "dotenv/load"
 require "voyageai"
+require_relative "../../helpers/vcr"
 
 # Client Setup
 CLIENT = VoyageAI::Client.new
@@ -17,8 +18,10 @@ def generate_embedding(text, model: "voyage-3-large", input_type: "query")
   result.embeddings[0]
 end
 
-text = File.read(File.join(__dir__, "..", "report.md"))
+with_vcr(:text_embeddings) do
+  text = File.read(File.join(__dir__, "..", "report.md"))
 
-chunks = chunk_by_section(text)
+  chunks = chunk_by_section(text)
 
-pp generate_embedding(chunks[0])
+  pp generate_embedding(chunks[0])
+end

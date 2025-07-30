@@ -2,6 +2,7 @@
 require "dotenv/load"
 require "voyageai"
 require_relative "vector_index"
+require_relative "../../helpers/vcr"
 
 VOYAGEAI_CLIENT = VoyageAI::Client.new
 
@@ -19,28 +20,30 @@ def generate_embedding(chunks, model: "voyage-3-large", input_type: "query")
   is_list ? result.embeddings : result.embeddings[0]
 end
 
-text = File.read(File.join(__dir__, "..", "report.md"))
+with_vcr(:implementing_the_rag_flow) do
+  text = File.read(File.join(__dir__, "..", "report.md"))
 
-# 1. Chunk the text by section
-chunks = chunk_by_section(text)
+  # 1. Chunk the text by section
+  chunks = chunk_by_section(text)
 
-# 2. Generate embeddings for each chunk
-embeddings = generate_embedding(chunks)
+  # 2. Generate embeddings for each chunk
+  embeddings = generate_embedding(chunks)
 
-# 3. Create a vector store and add each embedding to it
-store = VectorIndex.new
+  # 3. Create a vector store and add each embedding to it
+  store = VectorIndex.new
 
-embeddings.zip(chunks) do |embedding, chunk|
-  store.add_vector(vector: embedding, document: {"content" => chunk})
-end
+  embeddings.zip(chunks) do |embedding, chunk|
+    store.add_vector(vector: embedding, document: {"content" => chunk})
+  end
 
-# 4. Some time later, a user will ask a question. Generate an embedding for it
-user_embedding = generate_embedding("What did the software engineering dept do last year?")
+  # 4. Some time later, a user will ask a question. Generate an embedding for it
+  user_embedding = generate_embedding("What did the software engineering dept do last year?")
 
-# 5. Search the store with the embedding, find the 2 most relevant chunks
-results = store.search(user_embedding, k: 2)
+  # 5. Search the store with the embedding, find the 2 most relevant chunks
+  results = store.search(user_embedding, k: 2)
 
-results.each do |doc, distance|
-  puts distance
-  puts doc.fetch("content")[...200]
+  results.each do |doc, distance|
+    puts distance
+    puts doc.fetch("content")[...200]
+  end
 end

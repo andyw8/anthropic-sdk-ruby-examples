@@ -2,6 +2,7 @@ require "dotenv/load"
 require "anthropic"
 require "json"
 require "time"
+require_relative "../../helpers/vcr"
 
 CLIENT = Anthropic::Client.new
 MODEL = "claude-3-7-sonnet-latest"
@@ -242,10 +243,12 @@ def run_conversation(messages)
 end
 
 if __FILE__ == $0
-  messages = []
-  add_user_message(
-    messages,
-    "Set a reminder for my doctors appointment. Its 177 days after Jan 1st, 2050."
-  )
-  run_conversation(messages)
+  with_vcr(:using_multiple_tools) do
+    messages = []
+    add_user_message(
+      messages,
+      "Set a reminder for my doctors appointment. Its 177 days after Jan 1st, 2050."
+    )
+    run_conversation(messages)
+  end
 end

@@ -1,0 +1,455 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"Set
+        a reminder for my doctors appointment. Its 177 days after Jan 1st, 2050."}],"temperature":1.0,"stop_sequences":[],"tools":[{"name":"get_current_datetime","description":"Returns
+        the current date and time formatted according to the specified format string.
+        This tool provides the current system time formatted as a string. Use this
+        tool when you need to know the current date and time, such as for timestamping
+        records, calculating time differences, or displaying the current time to users.
+        The default format returns the date and time in ISO-like format (YYYY-MM-DD
+        HH:MM:SS).","input_schema":{"type":"object","properties":{"date_format":{"type":"string","description":"A
+        string specifying the format of the returned datetime. Uses Ruby''s strftime
+        format codes. For example, ''%Y-%m-%d'' returns just the date in YYYY-MM-DD
+        format, ''%H:%M:%S'' returns just the time in HH:MM:SS format, ''%B %d, %Y''
+        returns a date like ''May 07, 2025''. The default is ''%Y-%m-%d %H:%M:%S''
+        which returns a complete timestamp like ''2025-05-07 14:32:15''.","default":"%Y-%m-%d
+        %H:%M:%S"}},"required":[]}},{"name":"add_duration_to_datetime","description":"Adds
+        a specified duration to a datetime string and returns the resulting datetime
+        in a detailed format. This tool converts an input datetime string to a Ruby
+        Time object, adds the specified duration in the requested unit, and returns
+        a formatted string of the resulting datetime. It handles various time units
+        including seconds, minutes, hours, days, weeks, months, and years, with special
+        handling for month and year calculations to account for varying month lengths
+        and leap years. The output is always returned in a detailed format that includes
+        the day of the week, month name, day, year, and time with AM/PM indicator
+        (e.g., ''Thursday, April 03, 2025 10:30:00 AM'').","input_schema":{"type":"object","properties":{"datetime_str":{"type":"string","description":"The
+        input datetime string to which the duration will be added. This should be
+        formatted according to the input_format parameter."},"duration":{"type":"number","description":"The
+        amount of time to add to the datetime. Can be positive (for future dates)
+        or negative (for past dates). Defaults to 0."},"unit":{"type":"string","description":"The
+        unit of time for the duration. Must be one of: ''seconds'', ''minutes'', ''hours'',
+        ''days'', ''weeks'', ''months'', or ''years''. Defaults to ''days''."},"input_format":{"type":"string","description":"The
+        format string for parsing the input datetime_str, using Ruby''s strptime format
+        codes. For example, ''%Y-%m-%d'' for ISO format dates like ''2025-04-03''.
+        Defaults to ''%Y-%m-%d''."}},"required":["datetime_str"]}},{"name":"set_reminder","description":"Creates
+        a timed reminder that will notify the user at the specified time with the
+        provided content. This tool schedules a notification to be delivered to the
+        user at the exact timestamp provided. It should be used when a user wants
+        to be reminded about something specific at a future point in time. The reminder
+        system will store the content and timestamp, then trigger a notification through
+        the user''s preferred notification channels (mobile alerts, email, etc.) when
+        the specified time arrives. Reminders are persisted even if the application
+        is closed or the device is restarted. Users can rely on this function for
+        important time-sensitive notifications such as meetings, tasks, medication
+        schedules, or any other time-bound activities.","input_schema":{"type":"object","properties":{"content":{"type":"string","description":"The
+        message text that will be displayed in the reminder notification. This should
+        contain the specific information the user wants to be reminded about, such
+        as ''Take medication'', ''Join video call with team'', or ''Pay utility bills''."},"timestamp":{"type":"string","description":"The
+        exact date and time when the reminder should be triggered, formatted as an
+        ISO 8601 timestamp (YYYY-MM-DDTHH:MM:SS) or a Unix timestamp. The system handles
+        all timezone processing internally, ensuring reminders are triggered at the
+        correct time regardless of where the user is located. Users can simply specify
+        the desired time without worrying about timezone configurations."}},"required":["content","timestamp"]}}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '4295'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:41:34 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '19000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:41:36Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:41:34Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:41:33Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '27000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:41:34Z'
+      Request-Id:
+      - req_011CRdhCbXY3wmXyKsrxTPUC
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9676fd9e186baaae-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01JNATq8MLyPeUTsBGAwmSS7","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"I''ll
+        help you set a reminder for your doctor''s appointment. First, I need to calculate
+        the exact date that is 177 days after January 1, 2050."},{"type":"tool_use","id":"toolu_01ShbG9j9x7CNHedAnGzeg88","name":"add_duration_to_datetime","input":{"datetime_str":"2050-01-01","duration":177,"unit":"days"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":1370,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":136,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:41:34 GMT
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"Set
+        a reminder for my doctors appointment. Its 177 days after Jan 1st, 2050."},{"role":"assistant","content":[{"text":"I''ll
+        help you set a reminder for your doctor''s appointment. First, I need to calculate
+        the exact date that is 177 days after January 1, 2050.","type":"text"},{"id":"toolu_01ShbG9j9x7CNHedAnGzeg88","input":{"datetime_str":"2050-01-01","duration":177,"unit":"days"},"name":"add_duration_to_datetime","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01ShbG9j9x7CNHedAnGzeg88","content":"\"Monday,
+        June 27, 2050 01:00:00 AM\"","is_error":false}]}],"temperature":1.0,"stop_sequences":[],"tools":[{"name":"get_current_datetime","description":"Returns
+        the current date and time formatted according to the specified format string.
+        This tool provides the current system time formatted as a string. Use this
+        tool when you need to know the current date and time, such as for timestamping
+        records, calculating time differences, or displaying the current time to users.
+        The default format returns the date and time in ISO-like format (YYYY-MM-DD
+        HH:MM:SS).","input_schema":{"type":"object","properties":{"date_format":{"type":"string","description":"A
+        string specifying the format of the returned datetime. Uses Ruby''s strftime
+        format codes. For example, ''%Y-%m-%d'' returns just the date in YYYY-MM-DD
+        format, ''%H:%M:%S'' returns just the time in HH:MM:SS format, ''%B %d, %Y''
+        returns a date like ''May 07, 2025''. The default is ''%Y-%m-%d %H:%M:%S''
+        which returns a complete timestamp like ''2025-05-07 14:32:15''.","default":"%Y-%m-%d
+        %H:%M:%S"}},"required":[]}},{"name":"add_duration_to_datetime","description":"Adds
+        a specified duration to a datetime string and returns the resulting datetime
+        in a detailed format. This tool converts an input datetime string to a Ruby
+        Time object, adds the specified duration in the requested unit, and returns
+        a formatted string of the resulting datetime. It handles various time units
+        including seconds, minutes, hours, days, weeks, months, and years, with special
+        handling for month and year calculations to account for varying month lengths
+        and leap years. The output is always returned in a detailed format that includes
+        the day of the week, month name, day, year, and time with AM/PM indicator
+        (e.g., ''Thursday, April 03, 2025 10:30:00 AM'').","input_schema":{"type":"object","properties":{"datetime_str":{"type":"string","description":"The
+        input datetime string to which the duration will be added. This should be
+        formatted according to the input_format parameter."},"duration":{"type":"number","description":"The
+        amount of time to add to the datetime. Can be positive (for future dates)
+        or negative (for past dates). Defaults to 0."},"unit":{"type":"string","description":"The
+        unit of time for the duration. Must be one of: ''seconds'', ''minutes'', ''hours'',
+        ''days'', ''weeks'', ''months'', or ''years''. Defaults to ''days''."},"input_format":{"type":"string","description":"The
+        format string for parsing the input datetime_str, using Ruby''s strptime format
+        codes. For example, ''%Y-%m-%d'' for ISO format dates like ''2025-04-03''.
+        Defaults to ''%Y-%m-%d''."}},"required":["datetime_str"]}},{"name":"set_reminder","description":"Creates
+        a timed reminder that will notify the user at the specified time with the
+        provided content. This tool schedules a notification to be delivered to the
+        user at the exact timestamp provided. It should be used when a user wants
+        to be reminded about something specific at a future point in time. The reminder
+        system will store the content and timestamp, then trigger a notification through
+        the user''s preferred notification channels (mobile alerts, email, etc.) when
+        the specified time arrives. Reminders are persisted even if the application
+        is closed or the device is restarted. Users can rely on this function for
+        important time-sensitive notifications such as meetings, tasks, medication
+        schedules, or any other time-bound activities.","input_schema":{"type":"object","properties":{"content":{"type":"string","description":"The
+        message text that will be displayed in the reminder notification. This should
+        contain the specific information the user wants to be reminded about, such
+        as ''Take medication'', ''Join video call with team'', or ''Pay utility bills''."},"timestamp":{"type":"string","description":"The
+        exact date and time when the reminder should be triggered, formatted as an
+        ISO 8601 timestamp (YYYY-MM-DDTHH:MM:SS) or a Unix timestamp. The system handles
+        all timezone processing internally, ensuring reminders are triggered at the
+        correct time regardless of where the user is located. Users can simply specify
+        the desired time without worrying about timezone configurations."}},"required":["content","timestamp"]}}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '4819'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:41:36 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '18000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:41:40Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:41:37Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:41:35Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '26000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:41:37Z'
+      Request-Id:
+      - req_011CRdhCkrciLSwbDZ3W7gKp
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9676fdac19e9aaae-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01LDpkzqPYRkgycdyS5ym8hX","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"Now
+        I''ll set the reminder for your doctor''s appointment on June 27, 2050. I''ll
+        format the timestamp properly for the reminder system:"},{"type":"tool_use","id":"toolu_01CHgtixYZCrt9f5ApqTtJ67","name":"set_reminder","input":{"content":"Doctor''s
+        appointment","timestamp":"2050-06-27T01:00:00"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":1535,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":116,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:41:36 GMT
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"Set
+        a reminder for my doctors appointment. Its 177 days after Jan 1st, 2050."},{"role":"assistant","content":[{"text":"I''ll
+        help you set a reminder for your doctor''s appointment. First, I need to calculate
+        the exact date that is 177 days after January 1, 2050.","type":"text"},{"id":"toolu_01ShbG9j9x7CNHedAnGzeg88","input":{"datetime_str":"2050-01-01","duration":177,"unit":"days"},"name":"add_duration_to_datetime","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01ShbG9j9x7CNHedAnGzeg88","content":"\"Monday,
+        June 27, 2050 01:00:00 AM\"","is_error":false}]},{"role":"assistant","content":[{"text":"Now
+        I''ll set the reminder for your doctor''s appointment on June 27, 2050. I''ll
+        format the timestamp properly for the reminder system:","type":"text"},{"id":"toolu_01CHgtixYZCrt9f5ApqTtJ67","input":{"content":"Doctor''s
+        appointment","timestamp":"2050-06-27T01:00:00"},"name":"set_reminder","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01CHgtixYZCrt9f5ApqTtJ67","content":"null","is_error":false}]}],"temperature":1.0,"stop_sequences":[],"tools":[{"name":"get_current_datetime","description":"Returns
+        the current date and time formatted according to the specified format string.
+        This tool provides the current system time formatted as a string. Use this
+        tool when you need to know the current date and time, such as for timestamping
+        records, calculating time differences, or displaying the current time to users.
+        The default format returns the date and time in ISO-like format (YYYY-MM-DD
+        HH:MM:SS).","input_schema":{"type":"object","properties":{"date_format":{"type":"string","description":"A
+        string specifying the format of the returned datetime. Uses Ruby''s strftime
+        format codes. For example, ''%Y-%m-%d'' returns just the date in YYYY-MM-DD
+        format, ''%H:%M:%S'' returns just the time in HH:MM:SS format, ''%B %d, %Y''
+        returns a date like ''May 07, 2025''. The default is ''%Y-%m-%d %H:%M:%S''
+        which returns a complete timestamp like ''2025-05-07 14:32:15''.","default":"%Y-%m-%d
+        %H:%M:%S"}},"required":[]}},{"name":"add_duration_to_datetime","description":"Adds
+        a specified duration to a datetime string and returns the resulting datetime
+        in a detailed format. This tool converts an input datetime string to a Ruby
+        Time object, adds the specified duration in the requested unit, and returns
+        a formatted string of the resulting datetime. It handles various time units
+        including seconds, minutes, hours, days, weeks, months, and years, with special
+        handling for month and year calculations to account for varying month lengths
+        and leap years. The output is always returned in a detailed format that includes
+        the day of the week, month name, day, year, and time with AM/PM indicator
+        (e.g., ''Thursday, April 03, 2025 10:30:00 AM'').","input_schema":{"type":"object","properties":{"datetime_str":{"type":"string","description":"The
+        input datetime string to which the duration will be added. This should be
+        formatted according to the input_format parameter."},"duration":{"type":"number","description":"The
+        amount of time to add to the datetime. Can be positive (for future dates)
+        or negative (for past dates). Defaults to 0."},"unit":{"type":"string","description":"The
+        unit of time for the duration. Must be one of: ''seconds'', ''minutes'', ''hours'',
+        ''days'', ''weeks'', ''months'', or ''years''. Defaults to ''days''."},"input_format":{"type":"string","description":"The
+        format string for parsing the input datetime_str, using Ruby''s strptime format
+        codes. For example, ''%Y-%m-%d'' for ISO format dates like ''2025-04-03''.
+        Defaults to ''%Y-%m-%d''."}},"required":["datetime_str"]}},{"name":"set_reminder","description":"Creates
+        a timed reminder that will notify the user at the specified time with the
+        provided content. This tool schedules a notification to be delivered to the
+        user at the exact timestamp provided. It should be used when a user wants
+        to be reminded about something specific at a future point in time. The reminder
+        system will store the content and timestamp, then trigger a notification through
+        the user''s preferred notification channels (mobile alerts, email, etc.) when
+        the specified time arrives. Reminders are persisted even if the application
+        is closed or the device is restarted. Users can rely on this function for
+        important time-sensitive notifications such as meetings, tasks, medication
+        schedules, or any other time-bound activities.","input_schema":{"type":"object","properties":{"content":{"type":"string","description":"The
+        message text that will be displayed in the reminder notification. This should
+        contain the specific information the user wants to be reminded about, such
+        as ''Take medication'', ''Join video call with team'', or ''Pay utility bills''."},"timestamp":{"type":"string","description":"The
+        exact date and time when the reminder should be triggered, formatted as an
+        ISO 8601 timestamp (YYYY-MM-DDTHH:MM:SS) or a Unix timestamp. The system handles
+        all timezone processing internally, ensuring reminders are triggered at the
+        correct time regardless of where the user is located. Users can simply specify
+        the desired time without worrying about timezone configurations."}},"required":["content","timestamp"]}}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '5300'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:41:38 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '17000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:41:45Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:41:38Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:41:38Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '25000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:41:38Z'
+      Request-Id:
+      - req_011CRdhCxP9yRcHzmM72H2TW
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9676fdbcf8bbaaae-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01Qm64eoWSWs4tVx79mu4ijn","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"Your
+        reminder has been set successfully! You''ll receive a notification for your
+        doctor''s appointment on Monday, June 27, 2050 at 1:00 AM. If you need to
+        adjust the specific time of your appointment, just let me know."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":1663,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":57,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:41:38 GMT
+recorded_with: VCR 6.3.1

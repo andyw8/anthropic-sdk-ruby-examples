@@ -58,22 +58,3 @@ def calculate_pi
   # Round to 5 decimal places
   (pi * 100000).round / 100000.0
 end
-
-# Calculates pi to the 5th digit using the Nilakantha series
-# Returns pi accurate to 5 decimal places (3.14159)
-def calculate_pi
-  pi = 3.0
-  sign = 1
-  denominator = 2
-  
-  # The Nilakantha series converges relatively quickly
-  # We'll use 1000 iterations to ensure 5 digit accuracy
-  1000.times do
-    pi += sign * (4.0 / (denominator * (denominator + 1) * (denominator + 2)))
-    sign *= -1
-    denominator += 2
-  end
-  
-  # Round to 5 decimal places
-  (pi * 100000).round / 100000.0
-end

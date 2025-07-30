@@ -1,5 +1,6 @@
 require "dotenv/load"
 require "anthropic"
+require_relative "../../helpers/vcr"
 
 CLIENT = Anthropic::Client.new
 MODEL = "claude-3-5-sonnet-20241022"
@@ -78,4 +79,6 @@ messages = []
 
 add_user_message(messages, "what's 1+1")
 
-puts chat(messages, tools: tools, system: CODE_PROMPT)
+with_vcr(:prompt_caching_in_action) do
+  puts chat(messages, tools: tools, system: CODE_PROMPT)
+end

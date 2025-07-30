@@ -2,6 +2,7 @@ require "dotenv/load"
 require "anthropic"
 require "json"
 require "fileutils"
+require_relative "../../helpers/vcr"
 
 CLIENT = Anthropic::Client.new
 MODEL = "claude-3-7-sonnet-latest"
@@ -328,4 +329,6 @@ add_user_message(
   "Open the ./06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and write out a method to calculate pi to the 5th digit. Then create a `06_tool_use_with_claude/13_the_text_edit_tool/test.rb` file to test your implementation."
 )
 
-run_conversation(messages)
+with_vcr(:the_text_edit_tool) do
+  run_conversation(messages)
+end

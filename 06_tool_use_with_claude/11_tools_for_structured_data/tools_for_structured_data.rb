@@ -1,6 +1,7 @@
 require "dotenv/load"
 require "anthropic"
 require "json"
+require_relative "../../helpers/vcr"
 
 # Load env variables and create client
 CLIENT = Anthropic::Client.new
@@ -70,22 +71,24 @@ ARTICLE_SUMMARY_SCHEMA = {
 
 # Example usage
 if __FILE__ == $0
-  messages = []
-  add_user_message(
-    messages,
-    "Write a one-paragraph scholarly article about computer science. Include a title and author name."
-  )
-  response = chat(messages)
-  article_text = text_from_message(response)
-  puts "Article text: #{article_text}"
+  with_vcr(:tools_for_structured_data) do
+    messages = []
+    add_user_message(
+      messages,
+      "Write a one-paragraph scholarly article about computer science. Include a title and author name."
+    )
+    response = chat(messages)
+    article_text = text_from_message(response)
+    puts "Article text: #{article_text}"
 
-  # Example usage with article summary tool
-  messages = []
-  add_user_message(messages, article_text)
-  response = chat(
-    messages,
-    tools: [ARTICLE_SUMMARY_SCHEMA],
-    tool_choice: {type: "tool", name: "article_summary"}
-  )
-  puts response.content[0].input
+    # Example usage with article summary tool
+    messages = []
+    add_user_message(messages, article_text)
+    response = chat(
+      messages,
+      tools: [ARTICLE_SUMMARY_SCHEMA],
+      tool_choice: {type: "tool", name: "article_summary"}
+    )
+    puts response.content[0].input
+  end
 end

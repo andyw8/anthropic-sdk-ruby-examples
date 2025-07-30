@@ -1,0 +1,248 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-5-sonnet-20241022","max_tokens":1000,"messages":[{"role":"user","content":"Write
+        a one-paragraph scholarly article about computer science. Include a title
+        and author name."}],"temperature":1.0,"stop_sequences":[]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '232'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:55:24 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '40000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '40000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:55:20Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:55:26Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:55:21Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '48000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '48000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:55:20Z'
+      Request-Id:
+      - req_011CRdiFeDiDerVUGE7okVeA
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 967711d66911ab87-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01QGFCAjv2q7wkBrR5oTJtPz","type":"message","role":"assistant","model":"claude-3-5-sonnet-20241022","content":[{"type":"text","text":"The
+        Evolution of Algorithmic Complexity in Modern Computing Systems\nBy Dr. Sarah
+        Chen, PhD\n\nThe exponential growth in computational capabilities over the
+        past several decades has necessitated increasingly sophisticated approaches
+        to algorithm design and optimization, particularly in the context of distributed
+        systems and parallel processing frameworks. While Moore''s Law has historically
+        provided predictable improvements in processing power, the emergence of quantum
+        computing, edge computing, and artificial intelligence has fundamentally altered
+        the landscape of algorithmic complexity analysis. Contemporary research indicates
+        that traditional Big O notation, while still relevant, must be supplemented
+        with new metrics that account for energy efficiency, memory hierarchy interactions,
+        and network latency in distributed environments. Recent studies by Kumar et
+        al. (2022) and Thompson (2023) demonstrate that optimal algorithm design now
+        requires a holistic approach that considers not only time and space complexity
+        but also data locality, cache coherence, and power consumption patterns, leading
+        to a new paradigm in computational efficiency evaluation that better reflects
+        the multifaceted nature of modern computing systems."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":25,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":210,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:55:24 GMT
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-5-sonnet-20241022","max_tokens":1000,"messages":[{"role":"user","content":"The
+        Evolution of Algorithmic Complexity in Modern Computing Systems\nBy Dr. Sarah
+        Chen, PhD\n\nThe exponential growth in computational capabilities over the
+        past several decades has necessitated increasingly sophisticated approaches
+        to algorithm design and optimization, particularly in the context of distributed
+        systems and parallel processing frameworks. While Moore''s Law has historically
+        provided predictable improvements in processing power, the emergence of quantum
+        computing, edge computing, and artificial intelligence has fundamentally altered
+        the landscape of algorithmic complexity analysis. Contemporary research indicates
+        that traditional Big O notation, while still relevant, must be supplemented
+        with new metrics that account for energy efficiency, memory hierarchy interactions,
+        and network latency in distributed environments. Recent studies by Kumar et
+        al. (2022) and Thompson (2023) demonstrate that optimal algorithm design now
+        requires a holistic approach that considers not only time and space complexity
+        but also data locality, cache coherence, and power consumption patterns, leading
+        to a new paradigm in computational efficiency evaluation that better reflects
+        the multifaceted nature of modern computing systems."}],"temperature":1.0,"stop_sequences":[],"tool_choice":{"type":"tool","name":"article_summary"},"tools":[{"name":"article_summary","description":"Creates
+        a summary of an article with its key insights. Use this tool when you need
+        to generate a structured summary of an article, research paper, or any textual
+        content. The tool requires the article''s title, author name, and a list of
+        the most important insights or takeaways from the content. Each insight should
+        be a concise statement capturing a significant point from the article.","input_schema":{"type":"object","properties":{"title":{"type":"string","description":"The
+        title of the article being summarized."},"author":{"type":"string","description":"The
+        name of the author who wrote the article."},"key_insights":{"type":"array","items":{"type":"string"},"description":"A
+        list of the most important takeaways or insights from the article. Each insight
+        should be a complete, concise statement."}},"required":["title","author","key_insights"]}}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '2334'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:55:28 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '40000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '40000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:55:26Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:55:29Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:55:26Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '48000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '48000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:55:26Z'
+      Request-Id:
+      - req_011CRdiG17KLFvgyfeDepT14
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 967711f4dca6ab87-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01QCud6so9Vpv7oY7SovGTAT","type":"message","role":"assistant","model":"claude-3-5-sonnet-20241022","content":[{"type":"tool_use","id":"toolu_01LCafFSFCfo4W3WtDz1P97a","name":"article_summary","input":{"title":"The
+        Evolution of Algorithmic Complexity in Modern Computing Systems","author":"Dr.
+        Sarah Chen","key_insights":["Traditional Big O notation, while still relevant,
+        needs to be supplemented with new metrics for modern computing systems","Algorithm
+        design now requires consideration of energy efficiency, memory hierarchy interactions,
+        and network latency in distributed environments","The emergence of quantum
+        computing, edge computing, and AI has transformed how we analyze algorithmic
+        complexity","Modern computational efficiency evaluation must include factors
+        like data locality, cache coherence, and power consumption patterns","Moore''s
+        Law''s historical improvements in processing power are being challenged by
+        new computing paradigms"]}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":755,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":201,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:55:28 GMT
+recorded_with: VCR 6.3.1

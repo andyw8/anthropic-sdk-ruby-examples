@@ -1,6 +1,7 @@
 require "dotenv"
 require "anthropic"
 require "date"
+require_relative "../../helpers/vcr"
 
 # Load environment variables
 Dotenv.load
@@ -120,12 +121,14 @@ TOOLS = [
 
 # Example usage
 if __FILE__ == $0
-  # Test the functionality
-  messages = []
-  add_user_message(messages, "Set a reminder for tomorrow to call my dentist")
+  with_vcr(:tool_functions) do
+    # Test the functionality
+    messages = []
+    add_user_message(messages, "Set a reminder for tomorrow to call my dentist")
 
-  system_prompt = "You are a helpful assistant that can manage dates and set reminders. Use the provided tools when appropriate."
+    system_prompt = "You are a helpful assistant that can manage dates and set reminders. Use the provided tools when appropriate."
 
-  response = chat(messages, system: system_prompt)
-  puts "Assistant response: #{response}"
+    response = chat(messages, system: system_prompt)
+    puts "Assistant response: #{response}"
+  end
 end

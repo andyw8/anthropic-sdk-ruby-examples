@@ -2,6 +2,7 @@ require "dotenv/load"
 require "anthropic"
 require "voyageai"
 require "json"
+require_relative "../../helpers/vcr"
 
 # Client Setup
 VOYAGEAI_CLIENT = VoyageAI::Client.new
@@ -497,20 +498,22 @@ def reranker_fn(docs, query_text, k)
   JSON.parse(text_from_message(result))["document_ids"]
 end
 
-# Create a vector index, a bm25 index, then use them to create a Retriever
-vector_index = VectorIndex.new(embedding_fn: method(:generate_embedding))
-bm25_index = BM25Index.new
+with_vcr(:reranking_results) do
+  # Create a vector index, a bm25 index, then use them to create a Retriever
+  vector_index = VectorIndex.new(embedding_fn: method(:generate_embedding))
+  bm25_index = BM25Index.new
 
-retriever = Retriever.new(bm25_index, vector_index, reranker_fn: method(:reranker_fn))
+  retriever = Retriever.new(bm25_index, vector_index, reranker_fn: method(:reranker_fn))
 
-# Add all chunks to the retriever, which internally passes them along to both indexes
-# Note: converted to a bulk operation to avoid rate limiting errors from VoyageAI
-retriever.add_documents(chunks.map { |chunk| {"content" => chunk} })
+  # Add all chunks to the retriever, which internally passes them along to both indexes
+  # Note: converted to a bulk operation to avoid rate limiting errors from VoyageAI
+  retriever.add_documents(chunks.map { |chunk| {"content" => chunk} })
 
-results = retriever.search("what did the eng team do with INC-2023-Q4-011?", k: 2)
+  results = retriever.search("what did the eng team do with INC-2023-Q4-011?", k: 2)
 
-results.each do |doc, score|
-  puts score
-  puts doc["content"][0, 200]
-  puts "---\n"
+  results.each do |doc, score|
+    puts score
+    puts doc["content"][0, 200]
+    puts "---\n"
+  end
 end

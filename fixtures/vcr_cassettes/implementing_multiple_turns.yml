@@ -1,0 +1,341 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"What
+        is the current time in HH:MM format? Also, what is the current time in SS
+        format?"}],"temperature":1.0,"stop_sequences":[],"tools":[{"name":"get_current_datetime","description":"Returns
+        the current date and time formatted according to the specified format string.
+        This tool provides the current system time formatted as a string. Use this
+        tool when you need to know the current date and time, such as for timestamping
+        records, calculating time differences, or displaying the current time to users.
+        The default format returns the date and time in ISO-like format (YYYY-MM-DD
+        HH:MM:SS).","input_schema":{"type":"object","properties":{"date_format":{"type":"string","description":"A
+        string specifying the format of the returned datetime. Uses Ruby''s strftime
+        format codes. For example, ''%Y-%m-%d'' returns just the date in YYYY-MM-DD
+        format, ''%H:%M:%S'' returns just the time in HH:MM:SS format, ''%B %d, %Y''
+        returns a date like ''May 07, 2025''. The default is ''%Y-%m-%d %H:%M:%S''
+        which returns a complete timestamp like ''2025-05-07 14:32:15''.","default":"%Y-%m-%d
+        %H:%M:%S"}},"required":[]}}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '1184'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:41:27 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:41:27Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:41:27Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:41:26Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:41:27Z'
+      Request-Id:
+      - req_011CRdhC7hxvZMGiYY59ivwK
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9676fd75d86639fa-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01LuAUEZVJUFVWcjUHbHZmDj","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"I
+        can help you get the current time in both HH:MM and SS formats using the get_current_datetime
+        function with specific format strings."},{"type":"tool_use","id":"toolu_01TjQWU7hdhJkrujzMiXP6uB","name":"get_current_datetime","input":{"date_format":"%H:%M"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":621,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":91,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:41:27 GMT
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"What
+        is the current time in HH:MM format? Also, what is the current time in SS
+        format?"},{"role":"assistant","content":[{"text":"I can help you get the current
+        time in both HH:MM and SS formats using the get_current_datetime function
+        with specific format strings.","type":"text"},{"id":"toolu_01TjQWU7hdhJkrujzMiXP6uB","input":{"date_format":"%H:%M"},"name":"get_current_datetime","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01TjQWU7hdhJkrujzMiXP6uB","content":"\"14:41\"","is_error":false}]}],"temperature":1.0,"stop_sequences":[],"tools":[{"name":"get_current_datetime","description":"Returns
+        the current date and time formatted according to the specified format string.
+        This tool provides the current system time formatted as a string. Use this
+        tool when you need to know the current date and time, such as for timestamping
+        records, calculating time differences, or displaying the current time to users.
+        The default format returns the date and time in ISO-like format (YYYY-MM-DD
+        HH:MM:SS).","input_schema":{"type":"object","properties":{"date_format":{"type":"string","description":"A
+        string specifying the format of the returned datetime. Uses Ruby''s strftime
+        format codes. For example, ''%Y-%m-%d'' returns just the date in YYYY-MM-DD
+        format, ''%H:%M:%S'' returns just the time in HH:MM:SS format, ''%B %d, %Y''
+        returns a date like ''May 07, 2025''. The default is ''%Y-%m-%d %H:%M:%S''
+        which returns a complete timestamp like ''2025-05-07 14:32:15''.","default":"%Y-%m-%d
+        %H:%M:%S"}},"required":[]}}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '1634'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:41:28 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:41:29Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:41:28Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:41:28Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:41:28Z'
+      Request-Id:
+      - req_011CRdhCFMqqvUf872Kb89rZ
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9676fd80eeb739fa-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01HvdSfx8D8L4Y1jVYeS6Z4V","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"tool_use","id":"toolu_01E5vLSqNwQKnsjdLKYWt32Y","name":"get_current_datetime","input":{"date_format":"%S"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":727,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":59,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:41:28 GMT
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"What
+        is the current time in HH:MM format? Also, what is the current time in SS
+        format?"},{"role":"assistant","content":[{"text":"I can help you get the current
+        time in both HH:MM and SS formats using the get_current_datetime function
+        with specific format strings.","type":"text"},{"id":"toolu_01TjQWU7hdhJkrujzMiXP6uB","input":{"date_format":"%H:%M"},"name":"get_current_datetime","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01TjQWU7hdhJkrujzMiXP6uB","content":"\"14:41\"","is_error":false}]},{"role":"assistant","content":[{"id":"toolu_01E5vLSqNwQKnsjdLKYWt32Y","input":{"date_format":"%S"},"name":"get_current_datetime","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01E5vLSqNwQKnsjdLKYWt32Y","content":"\"28\"","is_error":false}]}],"temperature":1.0,"stop_sequences":[],"tools":[{"name":"get_current_datetime","description":"Returns
+        the current date and time formatted according to the specified format string.
+        This tool provides the current system time formatted as a string. Use this
+        tool when you need to know the current date and time, such as for timestamping
+        records, calculating time differences, or displaying the current time to users.
+        The default format returns the date and time in ISO-like format (YYYY-MM-DD
+        HH:MM:SS).","input_schema":{"type":"object","properties":{"date_format":{"type":"string","description":"A
+        string specifying the format of the returned datetime. Uses Ruby''s strftime
+        format codes. For example, ''%Y-%m-%d'' returns just the date in YYYY-MM-DD
+        format, ''%H:%M:%S'' returns just the time in HH:MM:SS format, ''%B %d, %Y''
+        returns a date like ''May 07, 2025''. The default is ''%Y-%m-%d %H:%M:%S''
+        which returns a complete timestamp like ''2025-05-07 14:32:15''.","default":"%Y-%m-%d
+        %H:%M:%S"}},"required":[]}}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '1918'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:41:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '19000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:41:31Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:41:29Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:41:29Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '27000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:41:29Z'
+      Request-Id:
+      - req_011CRdhCLpkT77SeDK8HGgRk
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9676fd88e92439fa-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01RbeqGw84hnJKyWxF966EZk","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"The
+        current time is:\n- Hours and minutes (HH:MM format): 14:41\n- Seconds (SS
+        format): 28"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":799,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":35,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:41:29 GMT
+recorded_with: VCR 6.3.1

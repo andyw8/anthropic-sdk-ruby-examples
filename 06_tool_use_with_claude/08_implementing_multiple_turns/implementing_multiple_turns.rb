@@ -2,6 +2,7 @@ require "dotenv/load"
 require "anthropic"
 require "json"
 require "time"
+require_relative "../../helpers/vcr"
 
 CLIENT = Anthropic::Client.new
 MODEL = "claude-3-7-sonnet-latest"
@@ -231,11 +232,13 @@ def run_conversation(messages)
 end
 
 if __FILE__ == $0
-  messages = []
-  add_user_message(
-    messages,
-    "What is the current time in HH:MM format? Also, what is the current time in SS format?"
-  )
+  with_vcr(:implementing_multiple_turns) do
+    messages = []
+    add_user_message(
+      messages,
+      "What is the current time in HH:MM format? Also, what is the current time in SS format?"
+    )
 
-  run_conversation(messages)
+    run_conversation(messages)
+  end
 end

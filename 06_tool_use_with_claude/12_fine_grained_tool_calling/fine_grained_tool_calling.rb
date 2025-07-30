@@ -1,6 +1,7 @@
 require "dotenv/load"
 require "anthropic"
 require "json"
+require_relative "../../helpers/vcr"
 
 CLIENT = Anthropic::Client.new
 MODEL = "claude-sonnet-4-20250514"
@@ -234,8 +235,10 @@ add_user_message(
   TEXT
 )
 
-run_conversation(
-  messages,
-  tools: [SAVE_ARTICLE_SCHEMA],
-  tool_choice: {type: "tool", name: "save_article"}
-)
+with_vcr(:fine_grained_tool_calling) do
+  run_conversation(
+    messages,
+    tools: [SAVE_ARTICLE_SCHEMA],
+    tool_choice: {type: "tool", name: "save_article"}
+  )
+end

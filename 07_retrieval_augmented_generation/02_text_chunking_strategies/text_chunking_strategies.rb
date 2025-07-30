@@ -50,7 +50,7 @@ if __FILE__ == $0
   text = File.read(File.join(__dir__, "..", "report.md"))
 
   # Chunk by character example
-  # chunks = chunk_by_char(text)
+  chunks = chunk_by_char(text)
   chunks.each { |chunk| puts chunk + "\n----\n" }
 
   # Chunk by sentence example

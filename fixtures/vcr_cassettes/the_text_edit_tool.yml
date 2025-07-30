@@ -1,0 +1,465 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"Open
+        the ./06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and write
+        out a method to calculate pi to the 5th digit. Then create a `06_tool_use_with_claude/13_the_text_edit_tool/test.rb`
+        file to test your implementation."}],"temperature":1.0,"stop_sequences":[],"tools":[{"type":"text_editor_20250124","name":"str_replace_editor"}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '434'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:55:54 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '19000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:55:55Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:55:55Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:55:52Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '27000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:55:55Z'
+      Request-Id:
+      - req_011CRdiHyJj7bjChYXjZ64Vt
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9677129baf8339e9-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_017uwuMzwED837jMfvevEAGP","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"I''ll
+        help you with both tasks. First, let''s open the main.rb file to see its contents,
+        then I''ll add a method to calculate pi to the 5th digit, and finally create
+        a test file."},{"type":"tool_use","id":"toolu_01Xkn7FG6Zon1dcmuoWyaT9x","name":"str_replace_editor","input":{"command":"view","path":"./06_tool_use_with_claude/13_the_text_edit_tool/main.rb"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":1098,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":142,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:55:54 GMT
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"Open
+        the ./06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and write
+        out a method to calculate pi to the 5th digit. Then create a `06_tool_use_with_claude/13_the_text_edit_tool/test.rb`
+        file to test your implementation."},{"role":"assistant","content":[{"text":"I''ll
+        help you with both tasks. First, let''s open the main.rb file to see its contents,
+        then I''ll add a method to calculate pi to the 5th digit, and finally create
+        a test file.","type":"text"},{"id":"toolu_01Xkn7FG6Zon1dcmuoWyaT9x","input":{"command":"view","path":"./06_tool_use_with_claude/13_the_text_edit_tool/main.rb"},"name":"str_replace_editor","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01Xkn7FG6Zon1dcmuoWyaT9x","content":"\"1:
+        def greeting\\n2:   puts \\\"Hi there\\\"\\n3: end\"","is_error":false}]}],"temperature":1.0,"stop_sequences":[],"tools":[{"type":"text_editor_20250124","name":"str_replace_editor"}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '1031'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:55:59 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '19000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:55:58Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:56:02Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:55:55Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '27000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:55:58Z'
+      Request-Id:
+      - req_011CRdiJAdMug9uzpWzkvVU9
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 967712ac6c4439e9-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01ArJVxZxnxuyHMTTvohtjhj","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"Now
+        I''ll add a method to calculate pi to the 5th digit. I''ll use the Nilakantha
+        series which converges relatively quickly to pi:"},{"type":"tool_use","id":"toolu_011uVC8NQxAVqovTBaYB75zB","name":"str_replace_editor","input":{"command":"str_replace","path":"./06_tool_use_with_claude/13_the_text_edit_tool/main.rb","old_str":"def
+        greeting\n  puts \"Hi there\"\nend","new_str":"def greeting\n  puts \"Hi there\"\nend\n\n#
+        Calculates pi to the 5th digit using the Nilakantha series\n# Returns pi accurate
+        to 5 decimal places (3.14159)\ndef calculate_pi\n  pi = 3.0\n  sign = 1\n  denominator
+        = 2\n  \n  # The Nilakantha series converges relatively quickly\n  # We''ll
+        use 1000 iterations to ensure 5 digit accuracy\n  1000.times do\n    pi +=
+        sign * (4.0 / (denominator * (denominator + 1) * (denominator + 2)))\n    sign
+        *= -1\n    denominator += 2\n  end\n  \n  # Round to 5 decimal places\n  (pi
+        * 100000).round / 100000.0\nend"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":1271,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":369,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:55:59 GMT
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"Open
+        the ./06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and write
+        out a method to calculate pi to the 5th digit. Then create a `06_tool_use_with_claude/13_the_text_edit_tool/test.rb`
+        file to test your implementation."},{"role":"assistant","content":[{"text":"I''ll
+        help you with both tasks. First, let''s open the main.rb file to see its contents,
+        then I''ll add a method to calculate pi to the 5th digit, and finally create
+        a test file.","type":"text"},{"id":"toolu_01Xkn7FG6Zon1dcmuoWyaT9x","input":{"command":"view","path":"./06_tool_use_with_claude/13_the_text_edit_tool/main.rb"},"name":"str_replace_editor","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01Xkn7FG6Zon1dcmuoWyaT9x","content":"\"1:
+        def greeting\\n2:   puts \\\"Hi there\\\"\\n3: end\"","is_error":false}]},{"role":"assistant","content":[{"text":"Now
+        I''ll add a method to calculate pi to the 5th digit. I''ll use the Nilakantha
+        series which converges relatively quickly to pi:","type":"text"},{"id":"toolu_011uVC8NQxAVqovTBaYB75zB","input":{"command":"str_replace","path":"./06_tool_use_with_claude/13_the_text_edit_tool/main.rb","old_str":"def
+        greeting\n  puts \"Hi there\"\nend","new_str":"def greeting\n  puts \"Hi there\"\nend\n\n#
+        Calculates pi to the 5th digit using the Nilakantha series\n# Returns pi accurate
+        to 5 decimal places (3.14159)\ndef calculate_pi\n  pi = 3.0\n  sign = 1\n  denominator
+        = 2\n  \n  # The Nilakantha series converges relatively quickly\n  # We''ll
+        use 1000 iterations to ensure 5 digit accuracy\n  1000.times do\n    pi +=
+        sign * (4.0 / (denominator * (denominator + 1) * (denominator + 2)))\n    sign
+        *= -1\n    denominator += 2\n  end\n  \n  # Round to 5 decimal places\n  (pi
+        * 100000).round / 100000.0\nend"},"name":"str_replace_editor","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_011uVC8NQxAVqovTBaYB75zB","content":"\"Successfully
+        replaced text at exactly one location.\"","is_error":false}]}],"temperature":1.0,"stop_sequences":[],"tools":[{"type":"text_editor_20250124","name":"str_replace_editor"}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '2200'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:56:04 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '19000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:56:04Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:56:06Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:56:00Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '27000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:56:04Z'
+      Request-Id:
+      - req_011CRdiJZghFY2bHbzi28GY9
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 967712ce1f1739e9-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpZCI6Im1zZ18wMTduM0hENnVxeUViRHJUVE5SQjhiUmciLCJ0eXBlIjoibWVzc2FnZSIsInJvbGUiOiJhc3Npc3RhbnQiLCJtb2RlbCI6ImNsYXVkZS0zLTctc29ubmV0LTIwMjUwMjE5IiwiY29udGVudCI6W3sidHlwZSI6InRleHQiLCJ0ZXh0IjoiTm93LCBsZXQncyBjcmVhdGUgYSB0ZXN0IGZpbGUgdG8gdGVzdCBvdXIgaW1wbGVtZW50YXRpb246In0seyJ0eXBlIjoidG9vbF91c2UiLCJpZCI6InRvb2x1XzAxODRDNm5Dd1FGOUhqRUVVc0hBTHQzUyIsIm5hbWUiOiJzdHJfcmVwbGFjZV9lZGl0b3IiLCJpbnB1dCI6eyJjb21tYW5kIjoiY3JlYXRlIiwicGF0aCI6Ii4vMDZfdG9vbF91c2Vfd2l0aF9jbGF1ZGUvMTNfdGhlX3RleHRfZWRpdF90b29sL3Rlc3QucmIiLCJmaWxlX3RleHQiOiIjIS91c3IvYmluL2VudiBydWJ5XG5cbnJlcXVpcmVfcmVsYXRpdmUgJ21haW4nXG5cbiMgVGVzdCB0aGUgY2FsY3VsYXRlX3BpIG1ldGhvZFxucHV0cyBcIlRlc3RpbmcgY2FsY3VsYXRlX3BpIG1ldGhvZC4uLlwiXG5cbmNhbGN1bGF0ZWRfcGkgPSBjYWxjdWxhdGVfcGlcbmV4cGVjdGVkX3BpID0gMy4xNDE1OVxuXG5wdXRzIFwiQ2FsY3VsYXRlZCBwaTogI3tjYWxjdWxhdGVkX3BpfVwiXG5wdXRzIFwiRXhwZWN0ZWQgcGk6ICAgI3tleHBlY3RlZF9waX1cIlxuXG5pZiBjYWxjdWxhdGVkX3BpID09IGV4cGVjdGVkX3BpXG4gIHB1dHMgXCLinIUgVGVzdCBwYXNzZWQhIFBpIHdhcyBjYWxjdWxhdGVkIGNvcnJlY3RseSB0byA1IGRlY2ltYWwgcGxhY2VzLlwiXG5lbHNlXG4gIHB1dHMgXCLinYwgVGVzdCBmYWlsZWQhIFBpIGNhbGN1bGF0aW9uIGlzIG5vdCBhY2N1cmF0ZSB0byA1IGRlY2ltYWwgcGxhY2VzLlwiXG4gIHB1dHMgXCJEaWZmZXJlbmNlOiAjeyhjYWxjdWxhdGVkX3BpIC0gZXhwZWN0ZWRfcGkpLmFic31cIlxuZW5kIn19XSwic3RvcF9yZWFzb24iOiJ0b29sX3VzZSIsInN0b3Bfc2VxdWVuY2UiOm51bGwsInVzYWdlIjp7ImlucHV0X3Rva2VucyI6MTY1OSwiY2FjaGVfY3JlYXRpb25faW5wdXRfdG9rZW5zIjowLCJjYWNoZV9yZWFkX2lucHV0X3Rva2VucyI6MCwib3V0cHV0X3Rva2VucyI6Mjc4LCJzZXJ2aWNlX3RpZXIiOiJzdGFuZGFyZCJ9fQ==
+  recorded_at: Wed, 30 Jul 2025 18:56:04 GMT
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-7-sonnet-latest","max_tokens":1000,"messages":[{"role":"user","content":"Open
+        the ./06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and write
+        out a method to calculate pi to the 5th digit. Then create a `06_tool_use_with_claude/13_the_text_edit_tool/test.rb`
+        file to test your implementation."},{"role":"assistant","content":[{"text":"I''ll
+        help you with both tasks. First, let''s open the main.rb file to see its contents,
+        then I''ll add a method to calculate pi to the 5th digit, and finally create
+        a test file.","type":"text"},{"id":"toolu_01Xkn7FG6Zon1dcmuoWyaT9x","input":{"command":"view","path":"./06_tool_use_with_claude/13_the_text_edit_tool/main.rb"},"name":"str_replace_editor","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01Xkn7FG6Zon1dcmuoWyaT9x","content":"\"1:
+        def greeting\\n2:   puts \\\"Hi there\\\"\\n3: end\"","is_error":false}]},{"role":"assistant","content":[{"text":"Now
+        I''ll add a method to calculate pi to the 5th digit. I''ll use the Nilakantha
+        series which converges relatively quickly to pi:","type":"text"},{"id":"toolu_011uVC8NQxAVqovTBaYB75zB","input":{"command":"str_replace","path":"./06_tool_use_with_claude/13_the_text_edit_tool/main.rb","old_str":"def
+        greeting\n  puts \"Hi there\"\nend","new_str":"def greeting\n  puts \"Hi there\"\nend\n\n#
+        Calculates pi to the 5th digit using the Nilakantha series\n# Returns pi accurate
+        to 5 decimal places (3.14159)\ndef calculate_pi\n  pi = 3.0\n  sign = 1\n  denominator
+        = 2\n  \n  # The Nilakantha series converges relatively quickly\n  # We''ll
+        use 1000 iterations to ensure 5 digit accuracy\n  1000.times do\n    pi +=
+        sign * (4.0 / (denominator * (denominator + 1) * (denominator + 2)))\n    sign
+        *= -1\n    denominator += 2\n  end\n  \n  # Round to 5 decimal places\n  (pi
+        * 100000).round / 100000.0\nend"},"name":"str_replace_editor","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_011uVC8NQxAVqovTBaYB75zB","content":"\"Successfully
+        replaced text at exactly one location.\"","is_error":false}]},{"role":"assistant","content":[{"text":"Now,
+        let''s create a test file to test our implementation:","type":"text"},{"id":"toolu_0184C6nCwQF9HjEEUsHALt3S","input":{"command":"create","path":"./06_tool_use_with_claude/13_the_text_edit_tool/test.rb","file_text":"#!/usr/bin/env
+        ruby\n\nrequire_relative ''main''\n\n# Test the calculate_pi method\nputs
+        \"Testing calculate_pi method...\"\n\ncalculated_pi = calculate_pi\nexpected_pi
+        = 3.14159\n\nputs \"Calculated pi: #{calculated_pi}\"\nputs \"Expected pi:   #{expected_pi}\"\n\nif
+        calculated_pi == expected_pi\n  puts \"✅ Test passed! Pi was calculated correctly
+        to 5 decimal places.\"\nelse\n  puts \"❌ Test failed! Pi calculation is not
+        accurate to 5 decimal places.\"\n  puts \"Difference: #{(calculated_pi - expected_pi).abs}\"\nend"},"name":"str_replace_editor","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_0184C6nCwQF9HjEEUsHALt3S","content":"\"Successfully
+        created ./06_tool_use_with_claude/13_the_text_edit_tool/test.rb\"","is_error":false}]}],"temperature":1.0,"stop_sequences":[],"tools":[{"type":"text_editor_20250124","name":"str_replace_editor"}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.anthropic.com
+      X-Stainless-Arch:
+      - arm64
+      X-Stainless-Lang:
+      - ruby
+      X-Stainless-Os:
+      - MacOS
+      X-Stainless-Package-Version:
+      - 1.3.0
+      X-Stainless-Runtime:
+      - ruby
+      X-Stainless-Runtime-Version:
+      - 3.4.4
+      Content-Type:
+      - application/json
+      Anthropic-Version:
+      - '2023-06-01'
+      X-Api-Key:
+      - "<X-API-KEY>"
+      X-Stainless-Retry-Count:
+      - '0'
+      X-Stainless-Timeout:
+      - '600.0'
+      Content-Length:
+      - '3245'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Jul 2025 18:56:10 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Input-Tokens-Limit:
+      - '20000'
+      Anthropic-Ratelimit-Input-Tokens-Remaining:
+      - '19000'
+      Anthropic-Ratelimit-Input-Tokens-Reset:
+      - '2025-07-30T18:56:10Z'
+      Anthropic-Ratelimit-Output-Tokens-Limit:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Remaining:
+      - '8000'
+      Anthropic-Ratelimit-Output-Tokens-Reset:
+      - '2025-07-30T18:56:11Z'
+      Anthropic-Ratelimit-Requests-Limit:
+      - '50'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '49'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2025-07-30T18:56:06Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '27000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2025-07-30T18:56:10Z'
+      Request-Id:
+      - req_011CRdiJxDX6acoBRLJsrB8c
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Anthropic-Organization-Id:
+      - 524e51bd-1352-4383-9b7f-1add34ebe883
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 967712ef1f7539e9-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_017EtTy2XL6kCxFJN3H8wSEV","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"I''ve
+        completed both tasks:\n\n1. Added a `calculate_pi` method to the main.rb file
+        that:\n   - Uses the Nilakantha series to calculate pi\n   - Performs 1000
+        iterations to ensure accuracy to 5 decimal places\n   - Returns pi rounded
+        to exactly 5 decimal places (3.14159)\n\n2. Created a test.rb file that:\n   -
+        Imports the main.rb file\n   - Calls the calculate_pi method\n   - Compares
+        the result with the expected value (3.14159)\n   - Provides clear output on
+        whether the test passed or failed\n\nTo run the test, you can execute the
+        test.rb file with Ruby:\n```\nruby ./06_tool_use_with_claude/13_the_text_edit_tool/test.rb\n```\n\nThe
+        Nilakantha series is an efficient way to calculate pi, and with 1000 iterations,
+        it should reliably produce a value accurate to 5 decimal places."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":1974,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":228,"service_tier":"standard"}}'
+  recorded_at: Wed, 30 Jul 2025 18:56:10 GMT
+recorded_with: VCR 6.3.1
