@@ -30,9 +30,9 @@ def add_assistant_message(messages, message)
   elsif message.respond_to?(:content)
     content_list = []
     message.content.each do |block|
-      if block.type == "text"
+      if block.type == :text
         content_list << {type: "text", text: block.text}
-      elsif block.type == "tool_use"
+      elsif block.type == :tool_use
         content_list << {
           type: "tool_use",
           id: block.id,
@@ -69,7 +69,7 @@ def chat_stream(messages, system: nil, temperature: 1.0, stop_sequences: [], too
   params[:betas] = betas unless betas.empty?
 
   begin
-    CLIENT.beta.messages.stream(**params)
+    CLIENT.messages.stream(**params)
   rescue ArgumentError
     puts "Expected failure, see https://github.com/anthropics/anthropic-sdk-ruby/issues/108"
     exit(1)
@@ -78,7 +78,7 @@ end
 
 def text_from_message(message)
   message.content
-    .select { |block| block.type == "text" }
+    .select { |block| binding.irb; block.type == "text" }
     .map(&:text)
     .join("\n")
 end
@@ -152,7 +152,7 @@ def run_tool(tool_name, tool_input)
 end
 
 def run_tools(message)
-  tool_requests = message.content.select { |block| block.type == "tool_use" }
+  tool_requests = message.content.select { |block| block.type == :tool_use }
   tool_result_blocks = []
 
   tool_requests.each do |tool_request|
@@ -188,27 +188,33 @@ def run_conversation(messages, tools: [], tool_choice: nil, fine_grained: false)
       tool_choice: tool_choice
     )
 
+    final_message = nil
+
     stream.each do |chunk|
-      if chunk.type == "text"
+      if chunk.type == :text
         print chunk.text
       end
 
-      if chunk.type == "content_block_start"
-        if chunk.content_block.type == "tool_use"
+      if chunk.type == :content_block_start
+        if chunk.content_block.type == :tool_use
           puts "\n>>> Tool Call: \"#{chunk.content_block.name}\""
         end
       end
 
-      if chunk.type == "input_json" && chunk.partial_json
+      if chunk.type == :input_json && chunk.partial_json
         print chunk.partial_json
       end
 
-      if chunk.type == "content_block_stop"
+      if chunk.type == :content_block_stop
         puts
+      end
+
+      if chunk.type == :message_stop
+        final_message = chunk.message
       end
     end
 
-    response = stream.final_message
+    response = final_message
 
     add_assistant_message(messages, response)
 
