@@ -329,6 +329,6 @@ add_user_message(
   "Open the ./06_tool_use_with_claude/13_the_text_edit_tool/main.rb file and write out a method to calculate pi to the 5th digit. Then create a `06_tool_use_with_claude/13_the_text_edit_tool/test.rb` file to test your implementation."
 )
 
-with_vcr(:the_text_edit_tool) do
+VCR.use_cassette(:the_text_edit_tool) do
   run_conversation(messages)
 end

@@ -7,7 +7,7 @@ VCR.configure do |config|
   config.filter_sensitive_data("<AUTHORIZATION>") { |interaction| interaction.request.headers["Authorization"]&.first }
 end
 
-def with_vcr(cassette_name, &block)
+def VCR.use_cassette(cassette_name, &block)
   VCR.use_cassette(cassette_name) do
     yield
   end

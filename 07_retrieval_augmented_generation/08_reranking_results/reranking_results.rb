@@ -498,7 +498,7 @@ def reranker_fn(docs, query_text, k)
   JSON.parse(text_from_message(result))["document_ids"]
 end
 
-with_vcr(:reranking_results) do
+VCR.use_cassette(:reranking_results) do
   # Create a vector index, a bm25 index, then use them to create a Retriever
   vector_index = VectorIndex.new(embedding_fn: method(:generate_embedding))
   bm25_index = BM25Index.new

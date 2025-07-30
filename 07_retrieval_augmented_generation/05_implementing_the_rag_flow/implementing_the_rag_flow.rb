@@ -20,7 +20,7 @@ def generate_embedding(chunks, model: "voyage-3-large", input_type: "query")
   is_list ? result.embeddings : result.embeddings[0]
 end
 
-with_vcr(:implementing_the_rag_flow) do
+VCR.use_cassette(:implementing_the_rag_flow) do
   text = File.read(File.join(__dir__, "..", "report.md"))
 
   # 1. Chunk the text by section

@@ -243,7 +243,7 @@ def run_conversation(messages)
 end
 
 if __FILE__ == $0
-  with_vcr(:using_multiple_tools) do
+  VCR.use_cassette(:using_multiple_tools) do
     messages = []
     add_user_message(
       messages,

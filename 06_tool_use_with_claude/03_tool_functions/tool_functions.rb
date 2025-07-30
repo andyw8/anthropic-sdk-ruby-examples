@@ -121,7 +121,7 @@ TOOLS = [
 
 # Example usage
 if __FILE__ == $0
-  with_vcr(:tool_functions) do
+  VCR.use_cassette(:tool_functions) do
     # Test the functionality
     messages = []
     add_user_message(messages, "Set a reminder for tomorrow to call my dentist")

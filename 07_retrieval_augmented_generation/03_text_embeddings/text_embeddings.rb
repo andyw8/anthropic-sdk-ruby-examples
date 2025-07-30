@@ -18,7 +18,7 @@ def generate_embedding(text, model: "voyage-3-large", input_type: "query")
   result.embeddings[0]
 end
 
-with_vcr(:text_embeddings) do
+VCR.use_cassette(:text_embeddings) do
   text = File.read(File.join(__dir__, "..", "report.md"))
 
   chunks = chunk_by_section(text)

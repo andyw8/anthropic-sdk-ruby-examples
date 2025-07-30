@@ -71,7 +71,7 @@ ARTICLE_SUMMARY_SCHEMA = {
 
 # Example usage
 if __FILE__ == $0
-  with_vcr(:tools_for_structured_data) do
+  VCR.use_cassette(:tools_for_structured_data) do
     messages = []
     add_user_message(
       messages,

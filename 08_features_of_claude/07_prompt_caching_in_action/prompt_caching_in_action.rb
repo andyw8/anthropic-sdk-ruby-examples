@@ -79,6 +79,6 @@ messages = []
 
 add_user_message(messages, "what's 1+1")
 
-with_vcr(:prompt_caching_in_action) do
+VCR.use_cassette(:prompt_caching_in_action) do
   puts chat(messages, tools: tools, system: CODE_PROMPT)
 end

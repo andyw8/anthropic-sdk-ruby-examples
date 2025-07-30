@@ -7,7 +7,7 @@ client = Anthropic::Client.new
 model = "claude-sonnet-4-0"
 
 if __FILE__ == $0
-  with_vcr(:making_a_request) do
+  VCR.use_cassette(:making_a_request) do
     message = client.messages.create(
       model: model,
       max_tokens: 1000,

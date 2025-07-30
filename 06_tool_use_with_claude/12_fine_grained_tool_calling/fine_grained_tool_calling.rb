@@ -235,7 +235,7 @@ add_user_message(
   TEXT
 )
 
-with_vcr(:fine_grained_tool_calling) do
+VCR.use_cassette(:fine_grained_tool_calling) do
   run_conversation(
     messages,
     tools: [SAVE_ARTICLE_SCHEMA],

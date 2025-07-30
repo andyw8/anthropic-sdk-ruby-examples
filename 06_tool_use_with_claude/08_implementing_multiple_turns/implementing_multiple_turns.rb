@@ -232,7 +232,7 @@ def run_conversation(messages)
 end
 
 if __FILE__ == $0
-  with_vcr(:implementing_multiple_turns) do
+  VCR.use_cassette(:implementing_multiple_turns) do
     messages = []
     add_user_message(
       messages,
