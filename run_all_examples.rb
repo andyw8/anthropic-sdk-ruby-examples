@@ -47,7 +47,6 @@ end
 def main
   examples = find_examples
 
-  puts "🚀 Running all Ruby examples from the Anthropic SDK course"
   puts "Found #{examples.length} examples to run:"
   examples.each_with_index do |example, index|
     puts "  #{index + 1}. #{example}"
