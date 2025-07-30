@@ -1,0 +1,5 @@
+.backups/
+
+# temporary files
+06_tool_use_with_claude/13_the_text_edit_tool/main.rb
+06_tool_use_with_claude/13_the_text_edit_tool/test.rb
