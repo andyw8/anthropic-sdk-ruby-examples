@@ -2,22 +2,25 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   standardrb:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version-file: .ruby-version
-        bundler-cache: true
-    
-    - name: Run StandardRB
-      run: bundle exec standardrb
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version-file: .ruby-version
+          bundler-cache: true
+
+      - name: Run StandardRB
+        run: bundle exec standardrb
+
+      - name: Run all examples
+        run: bundle exec ruby run_all_examples.rb
