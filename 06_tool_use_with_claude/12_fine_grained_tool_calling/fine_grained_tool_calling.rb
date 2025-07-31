@@ -76,13 +76,6 @@ def chat_stream(messages, system: nil, temperature: 1.0, stop_sequences: [], too
   end
 end
 
-def text_from_message(message)
-  message.content
-    .select { |block| binding.irb; block.type == "text" }
-    .map(&:text)
-    .join("\n")
-end
-
 SAVE_ARTICLE_SCHEMA = {
   name: "save_article",
   description: "Saves a scholarly journal article",
